@@ -1,0 +1,25 @@
+{
+    "agents": [
+        "claude_code",
+        "codex",
+        "opencode",
+        "gemini"
+    ],
+    "guidelines": true,
+    "mcp": true,
+    "nightwatch_mcp": false,
+    "sail": false,
+    "skills": [
+        "ai-image-generation",
+        "brainstorming",
+        "daisyui",
+        "executar-task",
+        "find-skills",
+        "frontend-design",
+        "laravel-best-practices",
+        "nano-banana-2",
+        "socialite-development",
+        "tailwindcss-development",
+        "web-design-guidelines"
+    ]
+}
