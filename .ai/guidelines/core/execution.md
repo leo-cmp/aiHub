@@ -3,6 +3,7 @@
 - Ao iniciar uma task, marque a task e `plan.md` como `Em execucao` quando aplicavel.
 - Siga `.ai/guidelines/core/environment.md` antes de escolher comandos de execucao local.
 - Antes de implementar task executavel, confirme que esta em branch propria da task e nao em branch de PR ja mergeado.
+- Nao inicie task que depende de outra task cujo PR ainda nao foi mergeado na branch principal (develop/main). Se houver dependencia aberta, pare e avise o usuario.
 - Nao execute pedido generico como "conforme planejado"; exija caminho de task em `.planning/PLAN_VN/tasks/*.md`.
 - Se criar ou alterar migrations/seeders, rode-os conforme `.ai/guidelines/stacks/<stack>.md` antes dos testes de aceite.
 - Antes de concluir, rode formatacao e o criterio de aceite da task.
@@ -17,6 +18,8 @@
 - Ao concluir task executavel, encaminhe para PR proprio com `Task X.Y` no titulo.
 - Se houver falha ou bloqueio, registre na task e comente na issue em vez de marcar concluida.
 - O relatorio final deve citar comandos rodados, incluindo migrate/seed quando aplicavel, resultado, arquivos de plano atualizados e issue.
+- **NUNCA SUPONHA**: Diante de qualquer ambiguidade, conflito entre especificacao e codigo existente, falta de informacao ou decisao com multiplos caminhos possiveis, PARE imediatamente e pergunte ao usuario. E preferivel interromper o trabalho e aguardar do que supor errado.
+- **Sem retrocompatibilidade em dev ativo**: Se o projeto estiver em desenvolvimento ativo (definido no `.ai/project.md` como sem usuarios em producao), nao gaste esforco mantendo rotas, views ou controllers legados/duplicados por compatibilidade. Delete/atualize o antigo em vez de manter ambos em paralelo, a menos que o usuario solicite explicitamente.
 
 ## Registro de Evidencias (Anti-Alucinacao)
 
