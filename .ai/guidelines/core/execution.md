@@ -17,3 +17,23 @@
 - Ao concluir task executavel, encaminhe para PR proprio com `Task X.Y` no titulo.
 - Se houver falha ou bloqueio, registre na task e comente na issue em vez de marcar concluida.
 - O relatorio final deve citar comandos rodados, incluindo migrate/seed quando aplicavel, resultado, arquivos de plano atualizados e issue.
+
+## Registro de Evidencias (Anti-Alucinacao)
+
+Toda afirmacao de "fiz", "corrigi", "implementei" ou "funciona" DEVE ter prova.
+
+Prova = comando executado + saida relevante + exit code.
+Use os comandos nativos da stack do projeto (consulte `.ai/stack.md`).
+
+Exemplos de provas validas (adapte para a stack do projeto):
+- `php spark test → Tests: 42, Failures: 0 (exit 0)`
+- `php spark migrate → Migrated: 2026-06-24_CreateUsers (exit 0)`
+- `phpstan analyse app/ --level=5 → 0 errors (exit 0)`
+- `npm test → 47 passed, 0 failed (exit 0)`
+- `python -m pytest → 23 passed (exit 0)`
+
+Regras:
+- Se nao ha prova, marque o item como `⚠️ Nao verificado` na task.
+- NUNCA marque `[x]` em criterio de aceite sem prova.
+- Log narrativo sem evidencia nao conta como conclusao.
+- Erros encontrados devem registrar: erro + causa + correcao + prova de que a correcao funcionou.

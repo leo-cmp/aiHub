@@ -17,3 +17,7 @@
 - Toda task executavel deve declarar no cabecalho: `Modelo recomendado`, `Substitutos se Anthropic indisponivel`, `Cargo recomendado` e `Motivo`.
 - O bloco de recomendacao deve ficar antes de `Prioridade` ou do primeiro contexto da task, para que o roteamento de execucao seja visivel sem ler a task inteira.
 - Use modelo forte para tasks que cruzam backend, frontend, regras financeiras, schema, integracoes ou muitos testes; use modelo economico para alteracoes pequenas, localizadas e reversiveis.
+- Ao criar nova task, use o template de `.ai/templates/task.md` como base.
+- Toda task deve ter `created_at` preenchido na criacao e `updated_at` atualizado a cada mudanca de status ou progresso significativo.
+- A secao `Estado Atual` da task deve refletir o ultimo ponto de parada para facilitar handoff entre sessoes.
+
