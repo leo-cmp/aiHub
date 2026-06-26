@@ -1,4 +1,4 @@
-.PHONY: install update git-update git-branch git-push git-pr help
+.PHONY: install install-force update update-force git-update git-branch git-push git-pr help
 
 help:
 	@echo "=========================================================================="
@@ -6,7 +6,9 @@ help:
 	@echo "=========================================================================="
 	@echo "Comandos disponíveis:"
 	@echo "  make install             - Cria pastas locais e configura links simbólicos no projeto pai (instalação)."
+	@echo "  make install-force       - Força a cópia de .agents e .mcp.json (sobrescreve arquivos locais)."
 	@echo "  make update              - Recria/atualiza links simbólicos no projeto pai (seguro para rodar)."
+	@echo "  make update-force        - Atalho para o install-force (atualização forçada local)."
 	@echo "  make git-update          - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
 	@echo "  make git-branch name=    - Cria uma nova branch local no aiHub para melhorias/PRs."
 	@echo "                             Exemplo: make git-branch name=minha-melhoria"
@@ -17,19 +19,23 @@ help:
 install:
 	@echo "Criando diretórios locais no projeto principal..."
 	mkdir -p ../.ai/guidelines/domain/business-rules
+	@if [ ! -d ../.agents ]; then \
+		echo "Copiando pasta .agents inicial para o projeto principal..."; \
+		cp -r .agents ../.agents; \
+	fi
 	
 	@echo "Criando links simbólicos dos agentes na raiz do projeto..."
-	ln -sf aiHub/AGENTS.md ../AGENTS.md
-	ln -sf aiHub/ANTIGRAVITY.md ../ANTIGRAVITY.md
-	ln -sf aiHub/CLAUDE.md ../CLAUDE.md
-	ln -sf aiHub/CODEX.md ../CODEX.md
-	ln -sf aiHub/COPILOT.md ../COPILOT.md
-	ln -sf aiHub/agents.json ../agents.json
+	ln -sf .aihub/AGENTS.md ../AGENTS.md
+	ln -sf .aihub/ANTIGRAVITY.md ../ANTIGRAVITY.md
+	ln -sf .aihub/CLAUDE.md ../CLAUDE.md
+	ln -sf .aihub/CODEX.md ../CODEX.md
+	ln -sf .aihub/COPILOT.md ../COPILOT.md
+	ln -sf .aihub/agents.json ../agents.json
 	
 	@echo "Criando links simbólicos das diretrizes globais na pasta .ai..."
-	ln -sf ../aiHub/.ai/roles ../.ai/roles
-	ln -sf ../../aiHub/.ai/guidelines/core ../.ai/guidelines/core
-	ln -sf ../../aiHub/.ai/guidelines/stacks ../.ai/guidelines/stacks
+	ln -sf ../.aihub/.ai/roles ../.ai/roles
+	ln -sf ../../.aihub/.ai/guidelines/core ../.ai/guidelines/core
+	ln -sf ../../.aihub/.ai/guidelines/stacks ../.ai/guidelines/stacks
 	
 	@echo "Verificando arquivos locais de configuração..."
 	@if [ ! -f ../.ai/project.md ]; then \
@@ -40,11 +46,30 @@ install:
 		echo "Criando arquivo inicial .ai/stack.md..."; \
 		printf "# Stacks do Projeto\n\nConsulte as diretrizes específicas em:\n- [Laravel](file:///.ai/guidelines/stacks/laravel.md)\n" > ../.ai/stack.md; \
 	fi
+	@if [ ! -f ../.mcp.json ]; then \
+		echo "Copiando arquivo .mcp.json inicial..."; \
+		cp .mcp.json ../.mcp.json; \
+	fi
+	@if [ -f ../.gitignore ]; then \
+		if ! grep -q "^\.aihub" ../.gitignore; then \
+			echo "Adicionando .aihub/ ao .gitignore do projeto principal..."; \
+			printf "\n# aiHub\n.aihub/\n" >> ../.gitignore; \
+		fi \
+	fi
 	@echo "Instalação do aiHub concluída com sucesso!"
+
+install-force:
+	@echo "Forçando a cópia de .agents e .mcp.json (sobrescrevendo arquivos locais)..."
+	rm -rf ../.agents ../.mcp.json
+	@$(MAKE) install
 
 update:
 	@echo "Atualizando links simbólicos do aiHub no projeto pai..."
 	@$(MAKE) install
+
+update-force:
+	@echo "Forçando atualização local completa dos arquivos..."
+	@$(MAKE) install-force
 
 git-update:
 	@echo "Buscando atualizações remotas do aiHub..."

@@ -11,16 +11,16 @@ Se o seu sistema possui o comando `make` instalado (Linux/macOS), você pode aut
 ### 1. Adicione o submódulo no seu projeto:
 Na raiz do seu projeto (novo ou existente), execute:
 ```bash
-git submodule add <URL_DO_REPOSITORIO_AIHUB> aiHub
+git submodule add https://github.com/leo-cmp/aiHub.git .aihub
 ```
 
 ### 2. Execute a instalação:
 ```bash
-cd aiHub
+cd .aihub
 make install
 ```
 
-Pronto! O `Makefile` criará automaticamente a estrutura física local `.ai/` no seu projeto pai, configurará todos os links simbólicos necessários apontando para as regras globais e gerará os arquivos `.ai/project.md` e `.ai/stack.md` iniciais se eles não existirem.
+Pronto! O `Makefile` criará automaticamente a estrutura física local `.ai/` no seu projeto pai, configurará todos os links simbólicos necessários apontando para as regras globais e copiará as configurações e pasta `.agents/` iniciais se elas não existirem. Além disso, adicionará `.aihub/` no `.gitignore` local de forma automática.
 
 ---
 
@@ -41,9 +41,10 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
    ```bash
    git submodule add <URL_DO_REPOSITORIO_AIHUB> aiHub
    ```
-4. **Crie a pasta física para configurações locais:**
+4. **Crie as pastas físicas para configurações e agentes locais:**
    ```bash
    mkdir -p .ai/guidelines/domain/business-rules
+   mkdir -p .agents
    ```
 5. **Crie os Links Simbólicos (Symlinks):**
    ```bash
@@ -54,11 +55,13 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
    ln -s aiHub/CODEX.md CODEX.md
    ln -s aiHub/COPILOT.md COPILOT.md
    ln -s aiHub/agents.json agents.json
+   ln -s aiHub/.mcp.json .mcp.json # Apenas se não possuir um .mcp.json customizado
 
-   # Links das subpastas internas em .ai
+   # Links das subpastas internas em .ai e .agents
    ln -s ../aiHub/.ai/roles .ai/roles
    ln -s ../../aiHub/.ai/guidelines/core .ai/guidelines/core
    ln -s ../../aiHub/.ai/guidelines/stacks .ai/guidelines/stacks
+   ln -s ../aiHub/.agents/skills .agents/skills
    ```
    > 💡 **Nota para Windows:** Se estiver usando Windows (fora do Git Bash/WSL), crie os links usando o Prompt de Comando (CMD) como Administrador:
    > * Para diretórios: `mklink /D <nome-do-link> <alvo>`
@@ -72,14 +75,15 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
 1. **Abra o terminal na raiz do seu projeto existente.**
 2. **Adicione o submódulo:**
    ```bash
-   git submodule add <URL_DO_REPOSITORIO_AIHUB> aiHub
+   git submodule add https://github.com/leo-cmp/aiHub.git .aihub
    ```
-3. **Crie a pasta física para as configurações específicas do projeto:**
+3. **Crie as pastas físicas para as configurações e agentes locais:**
    ```bash
    mkdir -p .ai/guidelines/domain/business-rules
+   mkdir -p .agents
    ```
-4. **Crie os Links Simbólicos:**
-   *(Rode os comandos de `ln -s` ou `mklink` listados no Cenário A).*
+4. **Crie os Links Simbólicos e Cópias:**
+   *(Rode os comandos de `ln -s`, `cp` ou `mklink` listados no Cenário A).*
 5. **Escreva as configurações locais em `.ai/project.md` e `.ai/stack.md` (ajustando a localização da sua stack, caso ela esteja em subpastas como `/app`).**
 
 ---
@@ -89,7 +93,7 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
 ### 1. Puxar atualizações globais (Upgrade)
 Se você estiver usando o instalador automatizado via `Makefile`, basta rodar o comando abaixo para puxar as últimas atualizações do `aiHub` e aplicar/atualizar todos os links simbólicos de uma só vez:
 ```bash
-cd aiHub
+cd .aihub
 make git-update
 ```
 
@@ -99,10 +103,17 @@ git submodule update --remote --merge
 # E caso haja novos arquivos de agentes ou diretrizes, recrie os symlinks necessários
 ```
 
-### 2. Contribuir com melhorias globais (PRs)
+### 2. Forçar atualização dos arquivos locais copiados (`.agents` e `.mcp.json`)
+Se você fez alterações locais em `.agents/skills` ou no `.mcp.json` e deseja resetá-los para a versão mais recente do `aiHub` (sobrescrevendo os arquivos locais), execute:
+```bash
+cd .aihub
+make update-force
+```
+
+### 3. Contribuir com melhorias globais (PRs)
 Para alterar arquivos globais e abrir um Pull Request para o `aiHub`:
 ```bash
-cd aiHub
+cd .aihub
 make git-branch name=feature/sua-melhoria
 # faça as alterações necessárias
 git add .ai/guidelines/stacks/sua-stack.md
