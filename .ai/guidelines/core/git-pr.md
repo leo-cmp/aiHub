@@ -2,7 +2,7 @@
 
 - **Sincronização Obrigatória**: Antes de criar qualquer ramificação (branch) para uma nova tarefa, atualize sua branch principal local (normalmente `main`) executando `git pull origin main` (ou a respectiva branch base). Nunca inicie o desenvolvimento ou crie branches a partir de uma base local desatualizada.
 - **Resolução de Conflitos**: Se forem detectados conflitos no Pull Request remoto, faça a mesclagem local da branch base mais recente (`git fetch origin` seguido de `git merge origin/main`) na sua branch de feature, resolva os conflitos de forma local, execute os testes de validação e envie a atualização.
-- **Escopo de Alterações no aiHub**: Quando atuarem no repositório `aiHub` (seja como submódulo ou repositório independente), os agentes de IA não devem modificar arquivos estruturais e de configuração global (como `Makefile`, `README.md`, `INSTALL.md`, `agents.json` ou arquivos na raiz) sem instrução humana direta e explícita. O escopo padrão de contribuições de agentes deve se restringir aos arquivos de diretrizes em `.ai/` e às pastas de skills em `.agents/`.
+- **Escopo de Alterações no aiHub**: Quando atuarem no repositório `aiHub` (seja como submódulo ou repositório independente), os agentes de IA não devem modificar arquivos estruturais e de configuração global (como `Makefile`, `README.md`, `INSTALL.md` ou arquivos na raiz) sem instrução humana direta e explícita. O escopo padrão de contribuições de agentes deve se restringir aos arquivos de diretrizes em `.ai/` e às pastas de skills em `.agents/`.
 - Repositorio oficial: conforme `.ai/project.md`.
 - Antes de operar issues, milestones, PRs ou releases, confirme o repositorio com `git remote -v` ou `gh repo view`.
 - Nunca inferir owner pela conta ativa do GitHub.

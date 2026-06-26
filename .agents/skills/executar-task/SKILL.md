@@ -19,6 +19,9 @@ disable-model-invocation: false
    - Se faltar informacao, pare e pergunte ao usuario.
 
 3. **Preparar execucao:**
+   - > [!IMPORTANT]
+     > **BRAINSTORMING E DESIGN PRÉVIO MANDATÓRIO**:
+     > Antes de modificar ou criar qualquer arquivo de código operacional do projeto, invoque a skill de `brainstorming` para apresentar sua proposta de design técnico e arquitetura para a tarefa. Faça perguntas uma a uma sobre pontos ambíguos e obtenha aprovação expressa do design pelo usuário. **Não faça suposições nem decida caminhos de implementação de forma silenciosa.**
    - Atualize `status: in_progress` e `updated_at` com data/hora atual.
    - Confirme que esta em branch propria da task (nao em main/develop).
    - Leia as guidelines indicadas pelo cargo da task.
