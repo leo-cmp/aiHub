@@ -2,6 +2,14 @@
 
 Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
+## Identidade da Sessao (Context Canary)
+
+1. Descubra o nome do usuario via `git config user.name` (fallback: "colega").
+2. Comece TODA resposta com o nome do usuario.
+3. Se voce perceber que esqueceu o nome ou nao consegue lembra-lo, informe:
+   "Meu contexto esta degradando. Considere abrir nova sessao e pedir para continuar de onde parou."
+4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
+
 ## Fluxo Obrigatorio
 
 1. Identifique qual agente voce e: Codex, Claude, Antigravity ou Copilot.
@@ -46,6 +54,21 @@ Codex, Gemini e Copilot possuem exatamente os mesmos cargos neste projeto.
 | Claude | implementacao UI/frontend | `frontend-engineer` |
 | Codex, Gemini ou Copilot | review, testes, validacao, PRs, release | `qa-release-engineer` |
 | Codex, Gemini ou Copilot | schema, migrations, queries, indices, performance SQL | `database-engineer` |
+
+## Protocolo de Handoff
+
+Quando o contexto degradar (detectado pelo Context Canary ou pelo usuario):
+
+1. Atualize o estado de todas as tasks ativas em `.planning/`.
+2. Registre no arquivo da task ativa:
+   - O que foi feito (com evidencias: comando + saida + exit code).
+   - O que falta.
+   - Proximo passo prioritario.
+   - Erros conhecidos.
+3. Se ThreadBridge estiver disponivel, salve a memoria.
+4. Informe o usuario: "Sessao pronta para handoff. Abra nova sessao e peca para continuar de onde parou."
+
+Na nova sessao, o agente deve ler `.planning/` e a task ativa para retomar do ponto exato.
 
 ## Prioridade
 

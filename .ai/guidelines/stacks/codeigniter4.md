@@ -21,16 +21,26 @@
 ### 3. Services (Camada de Regras de Negocio)
 - Orquestram as Entities e os Models de forma isolada do protocolo HTTP.
 - Registre as classes de servico em `app/Config/Services.php` utilizando a flag `$getShared` (Singletons) quando fizer sentido.
-- Controllers devem ser enxutos, apenas recebendo parametros HTTP e chamando o Service correspondente.
+- Controllers devem ser **ultra-enxutos** (no maximo **5 linhas** por metodo), apenas recebendo parametros HTTP, delegando a logica para o Service correspondente e retornando a resposta.
 
 ---
 
 ## Praticas Essenciais de Desenvolvimento no CI4
 
-### 1. View Cells (Componentizacao do Front-end)
-- Use **View Cells** (`<?= view_cell('App\Cells\NomeCell') ?>`) para criar componentes de tela reaproveitaveis e independentes (ex: menus, widgets, alertas de status).
-- Antes de duplicar markup entre views, verifique se ja existe (ou cabe criar) uma View Cell para o componente.
-- Logica de interface complexa nao deve ficar no Controller principal nem inflar a View.
+### 1. View Cells (Componentizacao do Front-end via Atomic Design)
+- Use **View Cells** (`<?= view_cell('App\Cells\NomeCell') ?>`) para criar componentes de tela reaproveitaveis e independentes.
+- Toda criacao de componentes visuais deve seguir a nomenclatura do **Atomic Design** organizando os subdiretorios de `app/Cells/`:
+  - **Atoms** (`app/Cells/Atoms/`): Menor unidade visual sem composicao (ex: `StatusBadge`, `Button`, `Icon`).
+  - **Molecules** (`app/Cells/Molecules/`): Composicao pequena de atoms (ex: `FormField`, `MetricCard`, `FlashAlert`).
+  - **Organisms** (`app/Cells/Organisms/`): Blocos funcionais maiores (ex: `Sidebar`, `Topbar`, `DataTableCard`, `ModalConfirm`).
+  - **Templates** (`app/Cells/Templates/`): Estruturas de layout de pagina (ex: `PanelShell`, `AuthShell`).
+  - **Pages** (`app/Cells/Pages/`): Telas completas ou secoes de pagina com dados ja preparados.
+- **Regras de Reuso**:
+  - Antes de criar markup novo em uma tela, procure por Cells ou blocos repetidos em `app/Cells/` ou nas views.
+  - Se um Cell existente serve: reutilize-o.
+  - Se um Cell quase serve, mas falta uma variacao (classe CSS, prop opcional, icone): **prefira estender o Cell existente** adicionando props com valores default para nao quebrar usos antigos, ao inves de duplicar codigo.
+  - Qualquer markup repetido que apareca em 2 ou mais views **deve** ser extraido para um Cell.
+  - Nao insira regras de negocio ou consultas diretas ao banco de dados dentro de Cells; o preparo de dados e responsabilidade de Controllers/Services.
 
 ### 2. Filters (Middlewares)
 - Regras de seguranca, CORS, autenticacao de sessao e isolamento multi-tenant devem ser executadas em **Filters** (`app/Config/Filters.php`).
@@ -69,3 +79,10 @@
 ## Frontend (a preencher conforme o projeto)
 
 - Definir aqui a stack de UI usada (ex: Tailwind + DaisyUI + HTMX, ou outra), padroes de componentizacao via View Cells e estados visuais (loading/empty/erro/sucesso).
+
+---
+
+## Traducao e Localizacao (pt-BR)
+
+- **Pacote Base**: O projeto utiliza a traducao fornecida por `natanfelles/CodeIgniter4-pt-BR`.
+- **Termos Ausentes e Novas Bibliotecas**: Mensagens de erro de pacotes novos (como Shield ou validacoes customizadas) que estiverem em ingles devem ser traduzidas criando/complementando arquivos locais correspondentes em `app/Language/pt-BR/` para manter a experiencia nativa em portugues.
