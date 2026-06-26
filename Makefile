@@ -1,12 +1,13 @@
-.PHONY: install update branch push-pr pr help
+.PHONY: install update upgrade branch push-pr pr help
 
 help:
 	@echo "=========================================================================="
 	@echo "                      aiHub - Comandos do Makefile                        "
 	@echo "=========================================================================="
 	@echo "Comandos disponíveis:"
-	@echo "  make install             - Cria pastas locais e configura links simbólicos no projeto pai."
-	@echo "  make update              - Puxa as últimas atualizações globais do repositório aiHub."
+	@echo "  make install             - Cria pastas locais e configura links simbólicos no projeto pai (instalação)."
+	@echo "  make update              - Recria/atualiza links simbólicos no projeto pai (seguro para rodar)."
+	@echo "  make upgrade             - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
 	@echo "  make branch name=        - Cria uma nova branch local no aiHub para melhorias/PRs."
 	@echo "                             Exemplo: make branch name=minha-melhoria"
 	@echo "  make push-pr             - Envia a branch atual e suas alterações para o repositório remoto."
@@ -42,10 +43,18 @@ install:
 	@echo "Instalação do aiHub concluída com sucesso!"
 
 update:
-	@echo "Atualizando o aiHub para a versão mais recente..."
+	@echo "Atualizando links simbólicos do aiHub no projeto pai..."
+	@$(MAKE) install
+
+upgrade:
+	@echo "Buscando atualizações remotas do aiHub..."
+	git fetch origin
 	git checkout main
-	git pull origin main
+	git reset --hard origin/main
+	@echo "Aplicando as novas diretrizes e links simbólicos..."
+	@$(MAKE) install
 	@echo "aiHub atualizado com sucesso!"
+
 
 branch:
 	@if [ -z "$(name)" ]; then \

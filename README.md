@@ -21,15 +21,21 @@ make help
 ```
 
 ### 2. Instalação e Vinculação (`install`)
-Cria a pasta `.ai/` física no projeto principal (pai) para regras de negócio específicas daquele projeto e configura todos os links simbólicos necessários.
+Cria a pasta `.ai/` física no projeto principal (pai) para regras de negócio específicas daquele projeto e configura todos os links simbólicos necessários (instalação inicial).
 ```bash
 make install
 ```
 
-### 3. Sincronizar com a Versão Global (`update`)
-Muda para a branch `main` e puxa as diretrizes atualizadas do repositório remoto do `aiHub`.
+### 3. Atualizar Links Locais (`update`)
+Se novos arquivos de diretrizes forem adicionados ou se os links simbólicos no projeto principal sumirem/quebrarem, rode este comando para recriá-los com segurança.
 ```bash
 make update
+```
+
+### 4. Sincronizar e Atualizar com a Versão Global (`upgrade`)
+Muda para a branch `main`, puxa as diretrizes atualizadas do repositório remoto do `aiHub` e atualiza automaticamente todos os links locais no projeto principal.
+```bash
+make upgrade
 ```
 
 ### 4. Contribuir com Novas Diretrizes (`branch` e `push-pr`)
