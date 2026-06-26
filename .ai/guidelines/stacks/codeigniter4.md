@@ -21,16 +21,26 @@
 ### 3. Services (Camada de Regras de Negocio)
 - Orquestram as Entities e os Models de forma isolada do protocolo HTTP.
 - Registre as classes de servico em `app/Config/Services.php` utilizando a flag `$getShared` (Singletons) quando fizer sentido.
-- Controllers devem ser enxutos, apenas recebendo parametros HTTP e chamando o Service correspondente.
+- Controllers devem ser **ultra-enxutos** (no maximo **5 linhas** por metodo), apenas recebendo parametros HTTP, delegando a logica para o Service correspondente e retornando a resposta.
 
 ---
 
 ## Praticas Essenciais de Desenvolvimento no CI4
 
-### 1. View Cells (Componentizacao do Front-end)
-- Use **View Cells** (`<?= view_cell('App\Cells\NomeCell') ?>`) para criar componentes de tela reaproveitaveis e independentes (ex: menus, widgets, alertas de status).
-- Antes de duplicar markup entre views, verifique se ja existe (ou cabe criar) uma View Cell para o componente.
-- Logica de interface complexa nao deve ficar no Controller principal nem inflar a View.
+### 1. View Cells (Componentizacao do Front-end via Atomic Design)
+- Use **View Cells** (`<?= view_cell('App\Cells\NomeCell') ?>`) para criar componentes de tela reaproveitaveis e independentes.
+- Toda criacao de componentes visuais deve seguir a nomenclatura do **Atomic Design** organizando os subdiretorios de `app/Cells/`:
+  - **Atoms** (`app/Cells/Atoms/`): Menor unidade visual sem composicao (ex: `StatusBadge`, `Button`, `Icon`).
+  - **Molecules** (`app/Cells/Molecules/`): Composicao pequena de atoms (ex: `FormField`, `MetricCard`, `FlashAlert`).
+  - **Organisms** (`app/Cells/Organisms/`): Blocos funcionais maiores (ex: `Sidebar`, `Topbar`, `DataTableCard`, `ModalConfirm`).
+  - **Templates** (`app/Cells/Templates/`): Estruturas de layout de pagina (ex: `PanelShell`, `AuthShell`).
+  - **Pages** (`app/Cells/Pages/`): Telas completas ou secoes de pagina com dados ja preparados.
+- **Regras de Reuso**:
+  - Antes de criar markup novo em uma tela, procure por Cells ou blocos repetidos em `app/Cells/` ou nas views.
+  - Se um Cell existente serve: reutilize-o.
+  - Se um Cell quase serve, mas falta uma variacao (classe CSS, prop opcional, icone): **prefira estender o Cell existente** adicionando props com valores default para nao quebrar usos antigos, ao inves de duplicar codigo.
+  - Qualquer markup repetido que apareca em 2 ou mais views **deve** ser extraido para um Cell.
+  - Nao insira regras de negocio ou consultas diretas ao banco de dados dentro de Cells; o preparo de dados e responsabilidade de Controllers/Services.
 
 ### 2. Filters (Middlewares)
 - Regras de seguranca, CORS, autenticacao de sessao e isolamento multi-tenant devem ser executadas em **Filters** (`app/Config/Filters.php`).
@@ -58,6 +68,26 @@
 
 - Todas as alteracoes de schema devem ser feitas via migrations Spark (`php spark make:migration`).
 - Crie indices em FKs e campos de busca/filtro frequente.
+- Todas as PKs sao **ULID** (`VARCHAR(26)`, sem auto-increment).
+- Valores monetarios (ex: `valor_estimado`, `valor_real`, tetos) usam `DECIMAL(10,2)`. Nunca `FLOAT`/`DOUBLE`.
+
+### Geracao de ULID
+
+- **Biblioteca**: `symfony/uid` (`composer require symfony/uid`). E a opcao mais madura e mantida para gerar ULIDs em PHP, sem trazer um framework completo como dependencia.
+- **Onde gerar**: no callback `$beforeInsert` do Model correspondente (nunca no Controller/Service), setando o campo de PK antes da insercao:
+  ```php
+  use Symfony\Component\Uid\Ulid;
+
+  protected $beforeInsert = ['generateUlid'];
+
+  protected function generateUlid(array $data): array
+  {
+      $data['data']['id'] ??= (string) new Ulid();
+
+      return $data;
+  }
+  ```
+- Isso garante ordenacao cronologica fisica no disco (requisito do projeto) sem acoplar a geracao do ID a nenhuma camada de negocio.
 
 ## Testes
 
@@ -66,6 +96,16 @@
 - Executar teste especifico: `vendor/bin/phpunit caminho/do/Teste.php`.
 - Filtrar por metodo: `vendor/bin/phpunit --filter nomeDoTeste`.
 
-## Frontend (a preencher conforme o projeto)
+## Frontend
 
-- Definir aqui a stack de UI usada (ex: Tailwind + DaisyUI + HTMX, ou outra), padroes de componentizacao via View Cells e estados visuais (loading/empty/erro/sucesso).
+- **Stack de UI**: Tailwind CSS v4 + daisyUI v5, com interatividade assincrona via **htmx**.
+- **Componentizacao**: estritamente via View Cells (Atomic Design), conforme secao "View Cells" acima. Telas completas sao proibidas antes de existirem os atoms/molecules/organisms que as compoem (metodologia bottom-up).
+- **htmx**: gatilhos (`hx-post`, `hx-target`, `hx-swap`) ficam definidos dentro do proprio View Cell que os utiliza, nunca espalhados soltos nas views de pagina.
+- **Estados visuais**: cada Organism/Molecule que depende de dados assincronos deve prever os estados de loading, empty, erro e sucesso como variantes do proprio Cell (nao como markup ad-hoc na pagina).
+
+---
+
+## Traducao e Localizacao (pt-BR)
+
+- **Pacote Base**: O projeto utiliza a traducao fornecida por `natanfelles/CodeIgniter4-pt-BR`.
+- **Termos Ausentes e Novas Bibliotecas**: Mensagens de erro de pacotes novos (como Shield ou validacoes customizadas) que estiverem em ingles devem ser traduzidas criando/complementando arquivos locais correspondentes em `app/Language/pt-BR/` para manter a experiencia nativa em portugues.

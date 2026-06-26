@@ -1,4 +1,4 @@
-.PHONY: install update branch push-pr help
+.PHONY: install update branch push-pr pr help
 
 help:
 	@echo "=========================================================================="
@@ -10,6 +10,7 @@ help:
 	@echo "  make branch name=        - Cria uma nova branch local no aiHub para melhorias/PRs."
 	@echo "                             Exemplo: make branch name=minha-melhoria"
 	@echo "  make push-pr             - Envia a branch atual e suas alterações para o repositório remoto."
+	@echo "  make pr                  - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
 	@echo "=========================================================================="
 
 install:
@@ -59,3 +60,8 @@ push-pr:
 	@echo "Enviando alterações locais para o repositório remoto..."
 	git push origin HEAD
 	@echo "Alterações enviadas com sucesso! Abra o link exibido acima para criar o Pull Request."
+
+pr:
+	@echo "Criando Pull Request no GitHub para a branch atual..."
+	gh pr create --base main --fill
+	@echo "Pull Request criado com sucesso!"
