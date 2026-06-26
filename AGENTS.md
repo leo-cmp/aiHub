@@ -2,6 +2,9 @@
 
 Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
+> [!NOTE]
+> O mapeamento estruturado de quais IAs podem fazer o que reside no arquivo [agents.json](file://agents.json) (ou no submódulo [aiHub/agents.json](file://aiHub/agents.json)). Use esse arquivo para configurações dinâmicas ou programáticas.
+
 ## Identidade da Sessao (Context Canary)
 
 1. Descubra o nome do usuario via `git config user.name` (fallback: "colega").
@@ -11,6 +14,7 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
 
 ## Fluxo Obrigatorio
+
 
 1. Identifique qual agente voce e: Codex, Claude, Antigravity ou Copilot.
 2. Identifique a natureza da demanda atual.

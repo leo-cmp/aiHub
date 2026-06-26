@@ -1,0 +1,58 @@
+{
+  "routing": [
+    {
+      "agents": ["*"],
+      "demand": "configurar/revisar o projeto (stack, regras de negocio, ambiente) ou se .ai/project.md nao existir",
+      "role": "project-planner",
+      "description": "entrevista sobre o projeto e gera/atualiza .ai/project.md, .ai/stack.md e regras de negocio."
+    },
+    {
+      "agents": ["Codex", "Gemini", "Copilot"],
+      "demand": "entrada inicial, roteamento, recomendacao de agente/modelo",
+      "role": "model-router",
+      "description": "recebe pedido humano natural e recomenda agente, cargo e modelo."
+    },
+    {
+      "agents": ["Codex", "Gemini", "Copilot"],
+      "demand": "requisitos, fases, planos, tasks, issues, decisao de escopo",
+      "role": "technical-lead",
+      "description": "fases, planos, tasks, issues, dependencias e estrategia de execucao."
+    },
+    {
+      "agents": ["Codex", "Gemini", "Copilot"],
+      "demand": "descoberta de produto, regra ambigua, criterio de negocio",
+      "role": "product-analyst",
+      "description": "requisitos, regras de negocio, ambiguidades e criterios de produto."
+    },
+    {
+      "agents": ["Claude"],
+      "demand": "implementacao backend + frontend",
+      "role": "fullstack-engineer",
+      "description": "implementacao coordenada de backend e frontend."
+    },
+    {
+      "agents": ["Claude"],
+      "demand": "implementacao backend/API/jobs/services",
+      "role": "backend-engineer",
+      "description": "backend, services, jobs, policies, APIs e testes backend."
+    },
+    {
+      "agents": ["Claude"],
+      "demand": "implementacao UI/frontend",
+      "role": "frontend-engineer",
+      "description": "UI, componentes, estados visuais e responsividade."
+    },
+    {
+      "agents": ["Codex", "Gemini", "Copilot"],
+      "demand": "review, testes, validacao, PRs, release",
+      "role": "qa-release-engineer",
+      "description": "testes, review, PRs, release e criterios de aceite."
+    },
+    {
+      "agents": ["Codex", "Gemini", "Copilot"],
+      "demand": "schema, migrations, queries, indices, performance SQL",
+      "role": "database-engineer",
+      "description": "schema, migrations, indices, integridade, queries e dinheiro."
+    }
+  ]
+}

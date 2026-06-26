@@ -23,6 +23,7 @@ install:
 	ln -sf aiHub/CLAUDE.md ../CLAUDE.md
 	ln -sf aiHub/CODEX.md ../CODEX.md
 	ln -sf aiHub/COPILOT.md ../COPILOT.md
+	ln -sf aiHub/agents.json ../agents.json
 	
 	@echo "Criando links simbólicos das diretrizes globais na pasta .ai..."
 	ln -sf ../aiHub/.ai/roles ../.ai/roles
