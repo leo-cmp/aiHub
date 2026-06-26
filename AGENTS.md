@@ -2,7 +2,11 @@
 
 Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
+> [!NOTE]
+> O mapeamento estruturado de quais IAs podem fazer o que reside no arquivo [agents.json](file://agents.json) (ou no submódulo [aiHub/agents.json](file://aiHub/agents.json)). Use esse arquivo para configurações dinâmicas ou programáticas.
+
 ## Fluxo Obrigatorio
+
 
 1. Identifique qual agente voce e: Codex, Claude, Antigravity ou Copilot.
 2. Identifique a natureza da demanda atual.
