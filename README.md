@@ -32,25 +32,28 @@ Se novos arquivos de diretrizes forem adicionados ou se os links simbólicos no 
 make update
 ```
 
-### 4. Sincronizar e Atualizar com a Versão Global (`upgrade`)
-Muda para a branch `main`, puxa as diretrizes atualizadas do repositório remoto do `aiHub` e atualiza automaticamente todos os links locais no projeto principal.
+### 4. Sincronizar e Atualizar com a Versão Global (`git-update`)
+Puxa as diretrizes atualizadas do repositório remoto do `aiHub` (sincronizando de forma limpa e resiliente via `reset --hard`) e atualiza automaticamente todos os links locais no projeto principal.
 ```bash
-make upgrade
+make git-update
 ```
 
-### 4. Contribuir com Novas Diretrizes (`branch` e `push-pr`)
-Se você quer adicionar uma nova stack ou melhorar diretrizes existentes, crie uma branch e envie suas alterações de volta:
+### 5. Contribuir com Novas Diretrizes (`git-branch`, `git-push` e `git-pr`)
+Se você quer adicionar uma nova stack ou melhorar diretrizes existentes, crie uma branch, envie as alterações e abra o Pull Request:
 
 1. **Crie a branch** (defina o nome com `name=`):
    ```bash
-   make branch name=feature/minha-melhoria
+   make git-branch name=feature/minha-melhoria
    ```
 2. Faça as alterações desejadas nos arquivos do `aiHub`.
 3. **Envie as alterações para o repositório remoto:**
    ```bash
-   make push-pr
+   make git-push
    ```
-4. O terminal exibirá o link para você abrir o Pull Request!
+4. **Crie o Pull Request automaticamente:**
+   ```bash
+   make git-pr
+   ```
 
 ---
 
