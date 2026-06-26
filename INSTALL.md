@@ -37,36 +37,41 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
    git init
    ```
 2. **Crie ou instale os arquivos do seu aplicativo na raiz.**
-3. **Adicione o submódulo:**
+3. **Adicione o submódulo na pasta oculta `.aihub`:**
    ```bash
-   git submodule add <URL_DO_REPOSITORIO_AIHUB> aiHub
+   git submodule add https://github.com/leo-cmp/aiHub.git .aihub
    ```
-4. **Crie as pastas físicas para configurações e agentes locais:**
+4. **Crie as pastas físicas locais (caso não existam):**
    ```bash
    mkdir -p .ai/guidelines/domain/business-rules
    mkdir -p .agents
+   mkdir -p .claude
    ```
-5. **Crie os Links Simbólicos (Symlinks):**
+5. **Crie os Links Simbólicos e Copie os Arquivos Locais:**
    ```bash
-   # Links de agentes na raiz
-   ln -s aiHub/AGENTS.md AGENTS.md
-   ln -s aiHub/ANTIGRAVITY.md ANTIGRAVITY.md
-   ln -s aiHub/CLAUDE.md CLAUDE.md
-   ln -s aiHub/CODEX.md CODEX.md
-   ln -s aiHub/COPILOT.md COPILOT.md
-   ln -s aiHub/agents.json agents.json
-   ln -s aiHub/.mcp.json .mcp.json # Apenas se não possuir um .mcp.json customizado
+   # Links de agentes na raiz apontando para .aihub
+   ln -s .aihub/AGENTS.md AGENTS.md
+   ln -s .aihub/ANTIGRAVITY.md ANTIGRAVITY.md
+   ln -s .aihub/CLAUDE.md CLAUDE.md
+   ln -s .aihub/CODEX.md CODEX.md
+   ln -s .aihub/COPILOT.md COPILOT.md
+   ln -s .aihub/agents.json agents.json
 
-   # Links das subpastas internas em .ai e .agents
-   ln -s ../aiHub/.ai/roles .ai/roles
-   ln -s ../../aiHub/.ai/guidelines/core .ai/guidelines/core
-   ln -s ../../aiHub/.ai/guidelines/stacks .ai/guidelines/stacks
-   ln -s ../aiHub/.agents/skills .agents/skills
+   # Links das subpastas internas em .ai e .claude
+   ln -s ../.aihub/.ai/roles .ai/roles
+   ln -s ../../.aihub/.ai/guidelines/core .ai/guidelines/core
+   ln -s ../../.aihub/.ai/guidelines/stacks .ai/guidelines/stacks
+   ln -s ../.agents/skills .claude/skills
+   
+   # Cópia física de arquivos de configuração e skills iniciais (se não existirem)
+   cp -r .aihub/.agents/* .agents/
+   cp .aihub/.mcp.json .mcp.json
    ```
    > 💡 **Nota para Windows:** Se estiver usando Windows (fora do Git Bash/WSL), crie os links usando o Prompt de Comando (CMD) como Administrador:
    > * Para diretórios: `mklink /D <nome-do-link> <alvo>`
    > * Para arquivos: `mklink <nome-do-link> <alvo>`
 6. **Escreva as configurações locais em `.ai/project.md` e `.ai/stack.md`.**
+
 
 ---
 
