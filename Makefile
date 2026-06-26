@@ -48,11 +48,13 @@ update:
 
 upgrade:
 	@echo "Buscando atualizações remotas do aiHub..."
+	git fetch origin
 	git checkout main
-	git pull origin main
+	git reset --hard origin/main
 	@echo "Aplicando as novas diretrizes e links simbólicos..."
 	@$(MAKE) install
 	@echo "aiHub atualizado com sucesso!"
+
 
 branch:
 	@if [ -z "$(name)" ]; then \
