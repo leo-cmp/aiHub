@@ -68,6 +68,26 @@
 
 - Todas as alteracoes de schema devem ser feitas via migrations Spark (`php spark make:migration`).
 - Crie indices em FKs e campos de busca/filtro frequente.
+- Todas as PKs sao **ULID** (`VARCHAR(26)`, sem auto-increment).
+- Valores monetarios (ex: `valor_estimado`, `valor_real`, tetos) usam `DECIMAL(10,2)`. Nunca `FLOAT`/`DOUBLE`.
+
+### Geracao de ULID
+
+- **Biblioteca**: `symfony/uid` (`composer require symfony/uid`). E a opcao mais madura e mantida para gerar ULIDs em PHP, sem trazer um framework completo como dependencia.
+- **Onde gerar**: no callback `$beforeInsert` do Model correspondente (nunca no Controller/Service), setando o campo de PK antes da insercao:
+  ```php
+  use Symfony\Component\Uid\Ulid;
+
+  protected $beforeInsert = ['generateUlid'];
+
+  protected function generateUlid(array $data): array
+  {
+      $data['data']['id'] ??= (string) new Ulid();
+
+      return $data;
+  }
+  ```
+- Isso garante ordenacao cronologica fisica no disco (requisito do projeto) sem acoplar a geracao do ID a nenhuma camada de negocio.
 
 ## Testes
 
@@ -76,9 +96,12 @@
 - Executar teste especifico: `vendor/bin/phpunit caminho/do/Teste.php`.
 - Filtrar por metodo: `vendor/bin/phpunit --filter nomeDoTeste`.
 
-## Frontend (a preencher conforme o projeto)
+## Frontend
 
-- Definir aqui a stack de UI usada (ex: Tailwind + DaisyUI + HTMX, ou outra), padroes de componentizacao via View Cells e estados visuais (loading/empty/erro/sucesso).
+- **Stack de UI**: Tailwind CSS v4 + daisyUI v5, com interatividade assincrona via **htmx**.
+- **Componentizacao**: estritamente via View Cells (Atomic Design), conforme secao "View Cells" acima. Telas completas sao proibidas antes de existirem os atoms/molecules/organisms que as compoem (metodologia bottom-up).
+- **htmx**: gatilhos (`hx-post`, `hx-target`, `hx-swap`) ficam definidos dentro do proprio View Cell que os utiliza, nunca espalhados soltos nas views de pagina.
+- **Estados visuais**: cada Organism/Molecule que depende de dados assincronos deve prever os estados de loading, empty, erro e sucesso como variantes do proprio Cell (nao como markup ad-hoc na pagina).
 
 ---
 

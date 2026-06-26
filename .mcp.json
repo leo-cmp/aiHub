@@ -18,6 +18,10 @@
         "chrome-devtools": {
             "command": "npx",
             "args": ["-y", "chrome-devtools-mcp@latest"]
+        },
+        "daisyui-github": {
+            "command": "npx",
+            "args": ["-y", "mcp-remote", "https://gitmcp.io/saadeghi/daisyui"]
         }
     }
 }
