@@ -1,4 +1,4 @@
-.PHONY: install update upgrade branch push-pr pr help
+.PHONY: install update git-update git-branch git-push git-pr help
 
 help:
 	@echo "=========================================================================="
@@ -7,11 +7,11 @@ help:
 	@echo "Comandos disponíveis:"
 	@echo "  make install             - Cria pastas locais e configura links simbólicos no projeto pai (instalação)."
 	@echo "  make update              - Recria/atualiza links simbólicos no projeto pai (seguro para rodar)."
-	@echo "  make upgrade             - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
-	@echo "  make branch name=        - Cria uma nova branch local no aiHub para melhorias/PRs."
-	@echo "                             Exemplo: make branch name=minha-melhoria"
-	@echo "  make push-pr             - Envia a branch atual e suas alterações para o repositório remoto."
-	@echo "  make pr                  - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
+	@echo "  make git-update          - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
+	@echo "  make git-branch name=    - Cria uma nova branch local no aiHub para melhorias/PRs."
+	@echo "                             Exemplo: make git-branch name=minha-melhoria"
+	@echo "  make git-push            - Envia a branch atual e suas alterações para o repositório remoto."
+	@echo "  make git-pr              - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
 	@echo "=========================================================================="
 
 install:
@@ -46,7 +46,7 @@ update:
 	@echo "Atualizando links simbólicos do aiHub no projeto pai..."
 	@$(MAKE) install
 
-upgrade:
+git-update:
 	@echo "Buscando atualizações remotas do aiHub..."
 	git fetch origin
 	git checkout main
@@ -56,21 +56,22 @@ upgrade:
 	@echo "aiHub atualizado com sucesso!"
 
 
-branch:
+git-branch:
 	@if [ -z "$(name)" ]; then \
 		echo "Erro: Você precisa definir o nome da branch usando name=<nome-da-branch>"; \
-		echo "Exemplo: make branch name=feature/minha-melhoria"; \
+		echo "Exemplo: make git-branch name=feature/minha-melhoria"; \
 		exit 1; \
 	fi
 	@echo "Criando nova branch '$(name)' no aiHub..."
 	git checkout -b $(name)
 
-push-pr:
+git-push:
 	@echo "Enviando alterações locais para o repositório remoto..."
 	git push origin HEAD
 	@echo "Alterações enviadas com sucesso! Abra o link exibido acima para criar o Pull Request."
 
-pr:
+git-pr:
 	@echo "Criando Pull Request no GitHub para a branch atual..."
 	gh pr create --base main --fill
 	@echo "Pull Request criado com sucesso!"
+

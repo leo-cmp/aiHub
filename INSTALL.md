@@ -90,7 +90,7 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
 Se você estiver usando o instalador automatizado via `Makefile`, basta rodar o comando abaixo para puxar as últimas atualizações do `aiHub` e aplicar/atualizar todos os links simbólicos de uma só vez:
 ```bash
 cd aiHub
-make upgrade
+make git-update
 ```
 
 Se preferir fazer a sincronização e atualização manualmente via Git:
@@ -103,10 +103,11 @@ git submodule update --remote --merge
 Para alterar arquivos globais e abrir um Pull Request para o `aiHub`:
 ```bash
 cd aiHub
-make branch name=feature/sua-melhoria
+make git-branch name=feature/sua-melhoria
 # faça as alterações necessárias
 git add .ai/guidelines/stacks/sua-stack.md
 git commit -m "docs: atualiza boas práticas"
-make push-pr
+make git-push
+make git-pr
 ```
-Depois, basta ir no GitHub/GitLab do `aiHub` e abrir o Pull Request!
+Depois disso, seu Pull Request será criado automaticamente no GitHub!
