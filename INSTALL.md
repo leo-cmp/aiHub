@@ -86,10 +86,17 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
 
 ## 🔄 Como Sincronizar e Contribuir com o aiHub
 
-### 1. Puxar atualizações globais (Pull)
-Para atualizar as diretrizes globais do `aiHub` no seu projeto:
+### 1. Puxar atualizações globais (Upgrade)
+Se você estiver usando o instalador automatizado via `Makefile`, basta rodar o comando abaixo para puxar as últimas atualizações do `aiHub` e aplicar/atualizar todos os links simbólicos de uma só vez:
+```bash
+cd aiHub
+make upgrade
+```
+
+Se preferir fazer a sincronização e atualização manualmente via Git:
 ```bash
 git submodule update --remote --merge
+# E caso haja novos arquivos de agentes ou diretrizes, recrie os symlinks necessários
 ```
 
 ### 2. Contribuir com melhorias globais (PRs)
