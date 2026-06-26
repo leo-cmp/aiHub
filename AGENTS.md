@@ -13,6 +13,14 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
    "Meu contexto esta degradando. Considere abrir nova sessao e pedir para continuar de onde parou."
 4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
 
+## Atalhos de Prompt (/aihub)
+
+Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a skill correspondente de `.agents/skills/` e seguir estritamente o seu fluxo:
+- `/aihub:iniciar` ou `/aihub:iniciar-projeto`: Ativa a skill `iniciar-projeto` para configurar `.ai/project.md`, `.ai/stack.md` e regras iniciais de negócio.
+- `/aihub:criar-plano` ou `/aihub:criar-plano-fase`: Ativa a skill `criar-plano` para desenhar o plano de uma nova fase local (`.planning/PLAN_VN/plan.md`).
+- `/aihub:criar-task` ou `/aihub:criar-tarefa`: Ativa a skill `criar-task` para gerar uma nova tarefa em `.planning/PLAN_VN/tasks/task_X_Y.md` usando o template.
+- `/aihub:atualizar` ou `/aihub:atualizar-projeto`: Ativa a skill `atualizar-projeto` para sincronizar novas regras de negócio ou alterações de escopo em `.ai/project.md`.
+
 ## Fluxo Obrigatorio
 
 
