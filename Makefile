@@ -37,6 +37,10 @@ install:
 	ln -sf ../../.aihub/.ai/guidelines/core ../.ai/guidelines/core
 	ln -sf ../../.aihub/.ai/guidelines/stacks ../.ai/guidelines/stacks
 	
+	@echo "Criando diretório .claude e linkando skills..."
+	mkdir -p ../.claude
+	ln -sf ../.agents/skills ../.claude/skills
+	
 	@echo "Verificando arquivos locais de configuração..."
 	@if [ ! -f ../.ai/project.md ]; then \
 		echo "Criando arquivo inicial .ai/project.md..."; \
