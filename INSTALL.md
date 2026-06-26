@@ -55,7 +55,6 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
    ln -s .aihub/CLAUDE.md CLAUDE.md
    ln -s .aihub/CODEX.md CODEX.md
    ln -s .aihub/COPILOT.md COPILOT.md
-   ln -s .aihub/agents.json agents.json
 
    # Links das subpastas internas em .ai e .claude
    ln -s ../.aihub/.ai/roles .ai/roles

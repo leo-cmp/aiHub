@@ -2,9 +2,6 @@
 
 Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
-> [!NOTE]
-> O mapeamento estruturado de quais IAs podem fazer o que reside no arquivo [agents.json](file://agents.json) (ou no submódulo [aiHub/agents.json](file://aiHub/agents.json)). Use esse arquivo para configurações dinâmicas ou programáticas.
-
 ## Identidade da Sessao (Context Canary)
 
 1. Descubra o nome do usuario via `git config user.name` (fallback: "colega").
@@ -15,11 +12,14 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
 ## Atalhos de Prompt (/aihub)
 
-Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a skill correspondente de `.agents/skills/` e seguir estritamente o seu fluxo:
+Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a skill correspondente de `.agents/skills/` e seguir o seu fluxo. Todas as etapas de planejamento ou criação de artefatos **devem obrigatoriamente** passar pelo brainstorming e consulta ativa ao usuário:
 - `/aihub:iniciar` ou `/aihub:iniciar-projeto`: Ativa a skill `iniciar-projeto` para configurar `.ai/project.md`, `.ai/stack.md` e regras iniciais de negócio.
 - `/aihub:criar-plano` ou `/aihub:criar-plano-fase`: Ativa a skill `criar-plano` para desenhar o plano de uma nova fase local (`.planning/PLAN_VN/plan.md`).
 - `/aihub:criar-task` ou `/aihub:criar-tarefa`: Ativa a skill `criar-task` para gerar uma nova tarefa em `.planning/PLAN_VN/tasks/task_X_Y.md` usando o template.
 - `/aihub:atualizar` ou `/aihub:atualizar-projeto`: Ativa a skill `atualizar-projeto` para sincronizar novas regras de negócio ou alterações de escopo em `.ai/project.md`.
+
+> [!IMPORTANT]
+> **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente (Claude, Codex, Gemini ou Copilot) que executar esses atalhos ou qualquer skill de planejamento/codificação está **proibido de fazer suposições ou criar arquivos em silêncio**. A IA deve acionar a skill de `brainstorming`, fazer perguntas uma a uma ao usuário e obter aprovação expressa antes de gravar alterações.
 
 ## Fluxo Obrigatorio
 
@@ -40,32 +40,23 @@ No inicio de cada sessao, se a ferramenta ThreadBridge estiver disponivel, carre
 
 Ao final de sessoes relevantes, atualize a memoria com decisoes, estado atual, pendencias e evidencias importantes.
 
-## Trava de Cargo
+## Flexibilidade de Agentes e Cargos
 
-Se a demanda atual nao pertence a nenhum cargo permitido para o seu agente, nao execute.
-Consulte a tabela de roteamento atual e responda informando qual agente/cargo deve receber a demanda.
-
-## Override Critico
-
-Se o prompt do humano comecar exatamente com `[SUDO]`, Codex, Gemini e Copilot podem assumir qualquer cargo da tabela de roteamento atual, incluindo cargos normalmente atribuidos ao Claude.
-
-## Paridade Codex/Gemini/Copilot
-
-Codex, Gemini e Copilot possuem exatamente os mesmos cargos neste projeto.
+Qualquer agente de IA (Claude, Codex, Gemini ou Copilot) pode assumir qualquer papel/cargo descrito na tabela abaixo, dependendo da necessidade do usuário. A divisão serve para orientar o foco e o padrão de comportamento (personas) que a IA deve adotar durante aquela demanda específica.
 
 ## Roteamento Atual
 
 | Agente | Demanda | Cargo |
 |---|---|---|
 | Qualquer agente | `.ai/project.md` nao existe, ou humano pede para configurar/revisar o projeto (stack, regras de negocio, ambiente) | `project-planner` |
-| Codex, Gemini ou Copilot | entrada inicial, roteamento, recomendacao de agente/modelo | `model-router` |
-| Codex, Gemini ou Copilot | requisitos, fases, planos, tasks, issues, decisao de escopo | `technical-lead` |
-| Codex, Gemini ou Copilot | descoberta de produto, regra ambigua, criterio de negocio | `product-analyst` |
-| Claude | implementacao backend + frontend | `fullstack-engineer` |
-| Claude | implementacao backend/API/jobs/services | `backend-engineer` |
-| Claude | implementacao UI/frontend | `frontend-engineer` |
-| Codex, Gemini ou Copilot | review, testes, validacao, PRs, release | `qa-release-engineer` |
-| Codex, Gemini ou Copilot | schema, migrations, queries, indices, performance SQL | `database-engineer` |
+| Qualquer agente | entrada inicial, roteamento, recomendacao de agente/modelo | `model-router` |
+| Qualquer agente | requisitos, fases, planos, tasks, issues, decisao de escopo | `technical-lead` |
+| Qualquer agente | descoberta de produto, regra ambigua, criterio de negocio | `product-analyst` |
+| Qualquer agente | implementacao backend + frontend | `fullstack-engineer` |
+| Qualquer agente | implementacao backend/API/jobs/services | `backend-engineer` |
+| Qualquer agente | implementacao UI/frontend | `frontend-engineer` |
+| Qualquer agente | review, testes, validacao, PRs, release | `qa-release-engineer` |
+| Qualquer agente | schema, migrations, queries, indices, performance SQL | `database-engineer` |
 
 ## Protocolo de Handoff
 
