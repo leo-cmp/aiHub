@@ -118,7 +118,7 @@ make update-force
 Para alterar arquivos globais e abrir um Pull Request para o `aiHub`:
 ```bash
 cd .aihub
-make git-branch name=feature/sua-melhoria
+make git-branch name=feat/sua-melhoria
 # faça as alterações necessárias
 git add .ai/guidelines/stacks/sua-stack.md
 git commit -m "docs: atualiza boas práticas"

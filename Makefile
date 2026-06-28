@@ -10,8 +10,8 @@ help:
 	@echo "  make update              - Recria/atualiza links simbólicos no projeto pai (seguro para rodar)."
 	@echo "  make update-force        - Atalho para o install-force (atualização forçada local)."
 	@echo "  make git-update          - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
-	@echo "  make git-branch name=    - Cria uma nova branch local no aiHub para melhorias/PRs."
-	@echo "                             Exemplo: make git-branch name=minha-melhoria"
+	@echo "  make git-branch name=    - Atualiza 'main' a partir do remoto e cria uma nova branch local."
+	@echo "                             Exemplo: make git-branch name=feat/minha-melhoria"
 	@echo "  make git-push            - Envia a branch atual e suas alterações para o repositório remoto."
 	@echo "  make git-pr              - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
 	@echo "=========================================================================="
@@ -86,11 +86,20 @@ git-update:
 
 git-branch:
 	@if [ -z "$(name)" ]; then \
-		echo "Erro: Você precisa definir o nome da branch usando name=<nome-da-branch>"; \
-		echo "Exemplo: make git-branch name=feature/minha-melhoria"; \
+		echo "Erro: Você precisa definir o nome da branch usando name=<tipo>/<descricao-curta>"; \
+		echo "Tipos: feat, fix, docs, refactor, chore, test, style, perf, build, ci"; \
+		echo "Exemplo: make git-branch name=feat/minha-melhoria"; \
 		exit 1; \
 	fi
-	@echo "Criando nova branch '$(name)' no aiHub..."
+	@echo "Verificando se a base local está atualizada com o remoto..."
+	git fetch origin
+	git checkout main
+	@if [ -n "$$(git log origin/main..main)" ]; then \
+		echo "Erro: sua branch 'main' local tem commits que não estão em 'origin/main'. Resolva isso manualmente antes de criar uma nova branch."; \
+		exit 1; \
+	fi
+	git pull --ff-only origin main
+	@echo "Criando nova branch '$(name)' a partir de 'main' atualizada..."
 	git checkout -b $(name)
 
 git-push:
