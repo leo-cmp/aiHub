@@ -18,6 +18,10 @@ O objetivo desta spec é definir como o aiHub passa a ter uma versão SemVer ras
   - Se só houver `docs:`, `chore:`, `test:`, `style:`, `build:` ou `ci:` desde a última tag → **nenhum bump** (nada a fazer).
 - Se não existir nenhuma tag ainda no repositório, a versão de partida é `0.0.0` (ou seja, o primeiro release calculado parte daí).
 
+### Bootstrap inicial
+
+O arquivo `VERSION` ainda não existe no repositório. Como parte da implementação desta spec (não de uma execução futura do `make release`), cria-se o arquivo `VERSION` com o conteúdo `0.0.0` junto do commit que introduz os comandos novos do Makefile. Isso garante que `make check` e `make git-update` sempre tenham um `VERSION` para ler, mesmo antes da primeira tag real ser publicada.
+
 ## `make release`
 
 Comando manual, executado localmente depois que uma ou mais PRs já foram mergeadas na `main`. Não há CI configurado no projeto, então este comando é o ponto único e explícito de corte de versão.
@@ -36,7 +40,7 @@ Passos:
 Comando de leitura, seguro para rodar em qualquer branch (não faz fetch destrutivo, checkout, nem altera arquivos):
 
 1. Lê a versão local instalada a partir do `VERSION` em `HEAD`.
-2. Roda `git ls-remote --tags origin`, filtra as refs que casam o padrão `vX.Y.Z`, ordena por SemVer e identifica a maior.
+2. Roda `git ls-remote --tags origin`, filtra as refs que casam o padrão `vX.Y.Z` (descartando o sufixo `^{}` que `ls-remote` retorna para tags anotadas dereferenciadas), ordena por SemVer e identifica a maior.
 3. Compara e imprime um dos três casos:
    - Igual → `aiHub está atualizado (v<X.Y.Z>).`
    - Tag remota maior → `Nova versão disponível: v<X.Y.Z> (atual: v<A.B.C>). Rode 'make git-update' para atualizar.`
