@@ -25,20 +25,20 @@ install:
 	fi
 	
 	@echo "Criando links simbólicos dos agentes na raiz do projeto..."
-	ln -sf .aihub/AGENTS.md ../AGENTS.md
-	ln -sf .aihub/ANTIGRAVITY.md ../ANTIGRAVITY.md
-	ln -sf .aihub/CLAUDE.md ../CLAUDE.md
-	ln -sf .aihub/CODEX.md ../CODEX.md
-	ln -sf .aihub/COPILOT.md ../COPILOT.md
+	ln -sfn .aihub/AGENTS.md ../AGENTS.md
+	ln -sfn .aihub/ANTIGRAVITY.md ../ANTIGRAVITY.md
+	ln -sfn .aihub/CLAUDE.md ../CLAUDE.md
+	ln -sfn .aihub/CODEX.md ../CODEX.md
+	ln -sfn .aihub/COPILOT.md ../COPILOT.md
 	
 	@echo "Criando links simbólicos das diretrizes globais na pasta .ai..."
-	ln -sf ../.aihub/.ai/roles ../.ai/roles
-	ln -sf ../../.aihub/.ai/guidelines/core ../.ai/guidelines/core
-	ln -sf ../../.aihub/.ai/guidelines/stacks ../.ai/guidelines/stacks
+	ln -sfn ../.aihub/.ai/roles ../.ai/roles
+	ln -sfn ../../.aihub/.ai/guidelines/core ../.ai/guidelines/core
+	ln -sfn ../../.aihub/.ai/guidelines/stacks ../.ai/guidelines/stacks
 	
 	@echo "Criando diretório .claude e linkando skills..."
 	mkdir -p ../.claude
-	ln -sf ../.agents/skills ../.claude/skills
+	ln -sfn ../.agents/skills ../.claude/skills
 	
 	@echo "Verificando arquivos locais de configuração..."
 	@if [ ! -f ../.ai/project.md ]; then \
