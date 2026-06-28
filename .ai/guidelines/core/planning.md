@@ -5,8 +5,13 @@
 - Se o repositorio local nao bater com o de `.ai/project.md`, pare e alerte o humano.
 - Cada `.planning/PLAN_VN` representa uma fase local e um milestone no GitHub.
 - O nome publico do milestone deve ser humano: `VN - Nome da fase`, nao `PLAN_VN`.
-- O ponto de entrada da fase deve ser `.planning/PLAN_VN/plan.md`.
+- O ponto de entrada da fase deve ser `.planning/PLAN_VN/plan.md`, criado a partir de `.ai/templates/plan.md`.
 - Cada task em `.planning/PLAN_VN/tasks/*.md` deve ter uma GitHub Issue correspondente.
+- Titulo de Issue de task: `[Task X.Y] Titulo descritivo` (ex.: `[Task 1.2] Cadastro de fornecedores`).
+- Corpo da Issue: secao "Historia" (Como [persona], quero [acao], para [beneficio] — inferida do `Objetivo` da task e confirmada com o humano antes de criar), secao "Criterios de Aceite" (copiada da task) e secao "Contexto Tecnico" (link do plano, link/caminho da task local, modelo recomendado e cargo).
+- **Criacao automatica via `gh`**: as skills `criar-plano` e `criar-task` devem criar milestone/issue diretamente via `gh` (nao apenas orientar o humano a criar manualmente). Antes de criar, confirme o repositorio oficial (`git remote -v` ou `gh repo view`) conforme `.ai/project.md`.
+- **Idempotencia e duplicidade**: antes de criar milestone ou issue, verifique primeiro a referencia local (`milestone:` em `plan.md`, `issue:` em `task.md`) — se ja preenchida, reuse e nao crie de novo. Se vazia, busque no GitHub por titulo igual; se ja existir, vincule ao existente em vez de duplicar. Crie apenas se nada for encontrado.
+- **Falha de `gh`**: se a chamada falhar (auth, rede, permissao), pare e avise o humano — nunca prossiga sem o vinculo de milestone/issue.
 - Cada task executavel deve resultar em um PR proprio; agrupamento de tasks exige autorizacao explicita do humano.
 - Cada issue deve apontar para o arquivo local da task, e cada task deve guardar a issue.
 - Agentes devem ler `plan.md` e apenas a task atual, nao todas as tasks por padrao.

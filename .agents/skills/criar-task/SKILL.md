@@ -29,6 +29,14 @@ Esta skill deve ser ativada quando o usuário solicitar a criação de uma nova 
      - **Cenários de Teste**: Descrever cenários de sucesso (happy path) e falha/limites.
      - **Recomendação de Modelo**: Declarar no cabeçalho o modelo sugerido, cargo recomendado (role) e motivo.
 
-4. **Vincular Issue GitHub:**
-   - Auxilie o usuário na criação e vinculo da GitHub Issue correspondente, salvando o link no cabeçalho da task.
-   - Atualize a lista/tabela de tarefas no `plan.md` com a nova tarefa no status `backlog`.
+4. **Criar a Issue no GitHub:**
+   - Confirme o repositório oficial (`git remote -v` ou `gh repo view`) conforme `.ai/project.md` antes de criar qualquer coisa remota.
+   - Verifique se o cabeçalho da task já tem `issue:` preenchido. Se sim, reuse — não crie de novo.
+   - Se vazio, monte o corpo da issue:
+     - **Historia**: infira "Como [persona], quero [ação], para [benefício]" a partir do `Objetivo` da task e confirme com o humano antes de criar (não assuma silenciosamente).
+     - **Criterios de Aceite**: copie da seção homônima da task.
+     - **Contexto Tecnico**: link do `plan.md`, caminho da task local, modelo recomendado e cargo.
+   - Busque por uma Issue existente com título igual a `[Task X.Y] Título descritivo`. Se encontrar, vincule em vez de duplicar.
+   - Se não existir, crie com `gh issue create --title "[Task X.Y] Título descritivo" --milestone "VN - Nome da fase" --body "..."` e salve a URL retornada no campo `issue:` do cabeçalho da task.
+   - Se a chamada ao `gh` falhar (auth, rede, permissão), pare e avise o humano — nunca prossiga sem o vínculo da issue.
+   - Atualize a lista/tabela de tarefas no `plan.md` com a nova tarefa no status `backlog` e a URL da issue.
