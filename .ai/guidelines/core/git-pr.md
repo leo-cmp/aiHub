@@ -1,6 +1,17 @@
 # Git & PR Guidelines
 
-- **Sincronização Obrigatória**: Antes de criar qualquer ramificação (branch) para uma nova tarefa, atualize sua branch principal local (normalmente `main`) executando `git pull origin main` (ou a respectiva branch base). Nunca inicie o desenvolvimento ou crie branches a partir de uma base local desatualizada.
+- **Verificação de Branch Ativa**: Antes de comecar a editar qualquer codigo, o agente deve rodar `git branch --show-current` (ou `git status`) e identificar em qual branch esta. Se a branch atual nao foi criada para a tarefa em questao (ex.: e a `main`, uma branch de uma tarefa anterior, ou uma branch ja com PR aberto/mesclado), o agente **deve parar e perguntar ao humano** se deve continuar nessa mesma branch ou criar uma nova a partir da `main` atualizada — nunca assumir silenciosamente que a branch ativa esta correta para o trabalho atual.
+- **Sincronização Obrigatória**: Antes de criar qualquer ramificação (branch) para uma nova tarefa, o agente **nunca** deve assumir que a base local está atualizada — é obrigatorio verificar primeiro. Rode `git fetch origin` e em seguida `git status -uno` (ou `git log origin/main..main`) comparando a branch base local com `origin/main` (ou a branch base correspondente). Se houver qualquer divergencia, execute `git pull origin main` antes de criar a branch. Nunca inicie o desenvolvimento ou crie branches a partir de uma base local desatualizada ou nao verificada.
+
+## Convencao de Commits, Branches e PRs
+
+Este projeto segue [Conventional Commits](https://www.conventionalcommits.org/), com descricao em PT-BR.
+
+- **Tipos permitidos**: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`, `perf`, `build`, `ci`.
+  - Use `refactor` (nao `refact`) e `feat` (nao `feature`) para manter consistencia com commits anteriores.
+- **Mensagem de commit**: `tipo: descricao curta no infinitivo/imperativo` (ex.: `fix: corrige race condition no idempotente do install`).
+- **Nome de branch**: `tipo/descricao-curta-em-kebab-case`, usando o mesmo `tipo` do commit predominante daquela branch (ex.: `fix/race-condition-install`).
+- **Titulo de PR**: segue a mesma convencao do commit (`tipo: descricao`). Para PRs ligados a uma task executavel, mantenha tambem a regra de incluir `Task X.Y` no titulo (ver abaixo).
 - **Resolução de Conflitos**: Se forem detectados conflitos no Pull Request remoto, faça a mesclagem local da branch base mais recente (`git fetch origin` seguido de `git merge origin/main`) na sua branch de feature, resolva os conflitos de forma local, execute os testes de validação e envie a atualização.
 - **Escopo de Alterações no aiHub**: Quando atuarem no repositório `aiHub` (seja como submódulo ou repositório independente), os agentes de IA não devem modificar arquivos estruturais e de configuração global (como `Makefile`, `README.md`, `INSTALL.md` ou arquivos na raiz) sem instrução humana direta e explícita. O escopo padrão de contribuições de agentes deve se restringir aos arquivos de diretrizes em `.ai/` e às pastas de skills em `.agents/`.
 - Repositorio oficial: conforme `.ai/project.md`.

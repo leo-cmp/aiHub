@@ -43,7 +43,7 @@ Se você quer adicionar uma nova stack ou melhorar diretrizes existentes, crie u
 
 1. **Crie a branch** (defina o nome com `name=`):
    ```bash
-   make git-branch name=feature/minha-melhoria
+   make git-branch name=feat/minha-melhoria
    ```
 2. Faça as alterações desejadas nos arquivos do `aiHub`.
 3. **Envie as alterações para o repositório remoto:**
