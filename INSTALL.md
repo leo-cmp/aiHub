@@ -49,12 +49,9 @@ Caso prefira fazer a instalação manualmente ou esteja no Windows (sem `make`),
    ```
 5. **Crie os Links Simbólicos e Copie os Arquivos Locais:**
    ```bash
-   # Links de agentes na raiz apontando para .aihub
+   # Links de agentes na raiz apontando para .aihub (CLAUDE.md aponta para o mesmo AGENTS.md)
    ln -s .aihub/AGENTS.md AGENTS.md
-   ln -s .aihub/ANTIGRAVITY.md ANTIGRAVITY.md
-   ln -s .aihub/CLAUDE.md CLAUDE.md
-   ln -s .aihub/CODEX.md CODEX.md
-   ln -s .aihub/COPILOT.md COPILOT.md
+   ln -s .aihub/AGENTS.md CLAUDE.md
 
    # Links das subpastas internas em .ai e .claude
    ln -s ../.aihub/.ai/roles .ai/roles

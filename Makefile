@@ -26,10 +26,11 @@ install:
 	
 	@echo "Criando links simbólicos dos agentes na raiz do projeto..."
 	ln -sfn .aihub/AGENTS.md ../AGENTS.md
-	ln -sfn .aihub/ANTIGRAVITY.md ../ANTIGRAVITY.md
-	ln -sfn .aihub/CLAUDE.md ../CLAUDE.md
-	ln -sfn .aihub/CODEX.md ../CODEX.md
-	ln -sfn .aihub/COPILOT.md ../COPILOT.md
+	ln -sfn .aihub/AGENTS.md ../CLAUDE.md
+	@echo "Removendo links simbólicos obsoletos (CODEX.md, COPILOT.md, ANTIGRAVITY.md)..."
+	@for f in CODEX.md COPILOT.md ANTIGRAVITY.md; do \
+		if [ -L "../$$f" ]; then rm -f "../$$f"; fi \
+	done
 	
 	@echo "Criando links simbólicos das diretrizes globais na pasta .ai..."
 	ln -sfn ../.aihub/.ai/roles ../.ai/roles
