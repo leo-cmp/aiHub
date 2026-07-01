@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "name=$(git config user.name 2>/dev/null); name=\"${name:-colega}\"; jq -n --arg name \"$name\" '{hookSpecificOutput:{hookEventName:\"UserPromptSubmit\",additionalContext:(\"Context Canary: o nome do usuario atual e \\\"\" + $name + \"\\\". Comece sua proxima resposta com esse nome exatamente como aparece aqui.\")}}'"
+          }
+        ]
+      }
+    ]
+  }
+}
