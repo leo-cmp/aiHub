@@ -33,7 +33,7 @@ make update
 ```
 
 ### 4. Sincronizar e Atualizar com a Versão Global (`git-update`)
-Puxa as diretrizes atualizadas do repositório remoto do `aiHub` (sincronizando de forma limpa e resiliente via `reset --hard`) e atualiza automaticamente todos os links locais no projeto principal.
+Puxa as diretrizes atualizadas do repositório remoto do `aiHub` (sincronizando de forma limpa e resiliente via `reset --hard`) e atualiza automaticamente todos os links locais no projeto principal. Ao final, informa a versão para a qual o aiHub foi atualizado.
 ```bash
 make git-update
 ```
@@ -54,6 +54,18 @@ Se você quer adicionar uma nova stack ou melhorar diretrizes existentes, crie u
    ```bash
    make git-pr
    ```
+
+### 6. Versionamento (`check` e `release`)
+O aiHub usa [SemVer](https://semver.org/lang/pt-BR/), com a versão atual sempre disponível no arquivo `VERSION` e publicada como tag git anotada (ex.: `v1.2.0`).
+
+- **`make check`**: compara a versão local com a última tag disponível no remoto, sem alterar nada.
+  ```bash
+  make check
+  ```
+- **`make release`**: calcula automaticamente o bump (major/minor/patch) a partir dos [Conventional Commits](https://www.conventionalcommits.org/) feitos desde a última tag, atualiza o `VERSION`, cria a nova tag e publica tudo no remoto. Rode depois que as PRs desejadas já estiverem mergeadas na `main`.
+  ```bash
+  make release
+  ```
 
 ---
 

@@ -1,4 +1,4 @@
-.PHONY: install install-force update update-force git-update git-branch git-push git-pr help
+.PHONY: install install-force update update-force git-update git-branch git-push git-pr release check help
 
 help:
 	@echo "=========================================================================="
@@ -14,6 +14,8 @@ help:
 	@echo "                             Exemplo: make git-branch name=feat/minha-melhoria"
 	@echo "  make git-push            - Envia a branch atual e suas alterações para o repositório remoto."
 	@echo "  make git-pr              - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
+	@echo "  make release             - Calcula o bump (semver) pelos commits desde a ultima tag e publica a nova versao."
+	@echo "  make check               - Compara a versao local com a ultima tag disponivel no remoto."
 	@echo "=========================================================================="
 
 install:
@@ -82,7 +84,7 @@ git-update:
 	git reset --hard origin/main
 	@echo "Aplicando as novas diretrizes e links simbólicos..."
 	@$(MAKE) install
-	@echo "aiHub atualizado com sucesso!"
+	@echo "aiHub atualizado com sucesso! Versão atual: v$$(cat VERSION)"
 
 
 git-branch:
@@ -112,4 +114,10 @@ git-pr:
 	@echo "Criando Pull Request no GitHub para a branch atual..."
 	gh pr create --base main --fill
 	@echo "Pull Request criado com sucesso!"
+
+release:
+	@bash scripts/release.sh
+
+check:
+	@bash scripts/check-version.sh
 
