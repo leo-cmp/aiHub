@@ -102,6 +102,8 @@
 - **Componentizacao**: estritamente via View Cells (Atomic Design), conforme secao "View Cells" acima. Telas completas sao proibidas antes de existirem os atoms/molecules/organisms que as compoem (metodologia bottom-up).
 - **htmx**: gatilhos (`hx-post`, `hx-target`, `hx-swap`) ficam definidos dentro do proprio View Cell que os utiliza, nunca espalhados soltos nas views de pagina.
 - **Estados visuais**: cada Organism/Molecule que depende de dados assincronos deve prever os estados de loading, empty, erro e sucesso como variantes do proprio Cell (nao como markup ad-hoc na pagina).
+- **Verbos HTTP reais em rotas de mutacao**: ao contrario de um `<form>` HTML puro (preso a `GET`/`POST`), o htmx suporta os verbos semanticos completos via `hx-put`, `hx-patch` e `hx-delete` sem precisar de method-spoofing. Por isso, toda rota de **criacao** usa `POST`, **atualizacao** usa `PUT`/`PATCH` e **exclusao** usa `DELETE` — nunca `POST` com o verbo escrito na URL (ex: `POST /recurso/(:segment)/excluir`). Principio geral: se a ferramenta disponivel suporta a forma correta, use a forma correta, nao a que "tambem funciona".
+  - No Controller, `$request->getPost()` so le `$_POST`, que o PHP so popula em requisicoes `POST` reais. Em `PUT`/`PATCH`/`DELETE` o corpo vem em `php://input` — use `$request->getRawInput()` (ou verifique `$request->getMethod()` para escolher a origem certa).
 
 ---
 
