@@ -98,7 +98,7 @@
 
 ## Frontend
 
-- **Stack de UI**: Tailwind CSS v4 + daisyUI v5, com interatividade assincrona via **htmx**.
+- **Stack de UI**: Tailwind CSS v4 + daisyUI v5, com interatividade assincrona via **htmx**. Ver `tailwind.md` e `daisyui.md` neste mesmo diretorio para as regras detalhadas de estilizacao (proibicao de `style=` inline, uso de tokens de tema, etc.).
 - **Componentizacao**: estritamente via View Cells (Atomic Design), conforme secao "View Cells" acima. Telas completas sao proibidas antes de existirem os atoms/molecules/organisms que as compoem (metodologia bottom-up).
 - **htmx**: gatilhos (`hx-post`, `hx-target`, `hx-swap`) ficam definidos dentro do proprio View Cell que os utiliza, nunca espalhados soltos nas views de pagina.
 - **Estados visuais**: cada Organism/Molecule que depende de dados assincronos deve prever os estados de loading, empty, erro e sucesso como variantes do proprio Cell (nao como markup ad-hoc na pagina).
