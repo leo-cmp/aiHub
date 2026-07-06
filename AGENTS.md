@@ -9,6 +9,7 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 3. Se voce perceber que esqueceu o nome ou nao consegue lembra-lo, informe:
    "Meu contexto esta degradando. Considere abrir nova sessao e pedir para continuar de onde parou."
 4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
+5. Sempre use a skill 'caveman' se disponivel no projeto.
 
 ## Atalhos de Prompt (/aihub)
 
