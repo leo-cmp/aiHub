@@ -1,4 +1,4 @@
-.PHONY: install install-force update update-force git-update git-branch git-push git-pr release check help
+.PHONY: install install-force update update-force git-update git-branch git-submit git-push git-pr release check help
 
 help:
 	@echo "=========================================================================="
@@ -12,6 +12,8 @@ help:
 	@echo "  make git-update          - Puxa as atualizações do Git remoto e atualiza os links simbólicos."
 	@echo "  make git-branch name=    - Atualiza 'main' a partir do remoto e cria uma nova branch local."
 	@echo "                             Exemplo: make git-branch name=feat/minha-melhoria"
+	@echo "  make git-submit          - Cria branch a partir da main local, commita .ai/guidelines, envia e abre PR."
+	@echo "                             Opções: name=docs/minha-mudanca msg=\"docs: atualizar diretrizes\""
 	@echo "  make git-push            - Envia a branch atual e suas alterações para o repositório remoto."
 	@echo "  make git-pr              - Abre o Pull Request da branch atual contra main (requer GitHub CLI 'gh')."
 	@echo "  make release             - Calcula o bump (semver) pelos commits desde a ultima tag e publica a nova versao."
@@ -105,6 +107,9 @@ git-branch:
 	@echo "Criando nova branch '$(name)' a partir de 'main' atualizada..."
 	git checkout -b $(name)
 
+git-submit:
+	@AIHUB_BRANCH_NAME="$(name)" AIHUB_COMMIT_MSG="$(msg)" bash scripts/git-submit.sh
+
 git-push:
 	@echo "Enviando alterações locais para o repositório remoto..."
 	git push origin HEAD
@@ -120,4 +125,3 @@ release:
 
 check:
 	@bash scripts/check-version.sh
-
