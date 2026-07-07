@@ -16,6 +16,7 @@ else
 fi
 
 COMMITS=$(git log $RANGE --pretty=format:'%s%n%b')
+CHANGED_FILES=$(git log $RANGE --name-only --pretty=format: | sed '/^$/d' | sort -u)
 
 if [ -z "$(echo "$COMMITS" | tr -d '[:space:]')" ]; then
 	echo "Nada releasable desde $LAST_TAG."
@@ -27,6 +28,9 @@ if echo "$COMMITS" | grep -q "BREAKING CHANGE:"; then
 elif echo "$COMMITS" | grep -qE "^feat(\(.+\))?:"; then
 	BUMP=minor
 elif echo "$COMMITS" | grep -qE "^(fix|perf|refactor)(\(.+\))?:"; then
+	BUMP=patch
+elif echo "$COMMITS" | grep -qE "^docs(\(.+\))?:" &&
+	echo "$CHANGED_FILES" | grep -qE "^(\.ai/guidelines/|\.agents/skills/)"; then
 	BUMP=patch
 else
 	BUMP=none
