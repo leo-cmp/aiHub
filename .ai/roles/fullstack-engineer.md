@@ -20,3 +20,11 @@ Implementar tasks que atravessam backend e frontend com testes e aderencia ao pl
 - Leia `.ai/guidelines/core/frontend.md`.
 - Leia `.ai/guidelines/core/testing.md`.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
+
+## Skills
+- `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.
+- `test-driven-development`: use ao criar ou alterar logica com testes.
+- `daisyui`: use ao trabalhar com componentes e temas daisyUI.
+- `tailwindcss-development`: use ao aplicar estilos com Tailwind CSS.
+- `executar-task`: use ao executar uma task planejada, seguindo o fluxo de execucao estruturada.
+- `iagentbot`: use em tarefas longas para notificar o usuario e aguardar resposta quando necessario.

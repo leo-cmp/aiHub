@@ -20,3 +20,10 @@ Validar qualidade, criterios de aceite, testes, PRs e prontidao de release.
 - Leia `.ai/guidelines/core/testing.md`.
 - Leia `.ai/guidelines/core/git-pr.md`.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
+
+## Skills
+- `requesting-code-review`: use ao preparar um PR para revisao.
+- `receiving-code-review`: use ao revisar um PR recebido.
+- `test-driven-development`: use como referencia ao validar cobertura de testes.
+- `finishing-a-development-branch`: use ao fechar uma branch de feature.
+- `verification-before-completion`: use antes de marcar uma task como concluida.

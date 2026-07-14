@@ -9,11 +9,22 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 3. Se voce perceber que esqueceu o nome ou nao consegue lembra-lo, informe:
    "Meu contexto esta degradando. Considere abrir nova sessao e pedir para continuar de onde parou."
 4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
-5. Sempre use a skill 'caveman' se disponivel no projeto.
+5. Sempre use a skill 'caveman' se disponivel no projeto — carregue-a antes de escrever respostas longas para economizar tokens.
+
+## Carregamento de Skills (Lazy Loading)
+
+**Nao carregue skills antecipadamente.** A unica skill universal e `caveman` (economia de tokens) — carregue-a sempre que for escrever uma resposta longa.
+
+As demais skills so devem ser lidas quando:
+- O usuario acionar um atalho `/aihub:*` explicitamente, OU
+- O cargo ativo ou a guideline de stack indicar explicitamente a skill, OU
+- A demanda atual exigir o uso de uma skill especifica.
+
+Carregar skills desnecessariamente consome contexto e degrada a sessao. Cada role e guideline de stack ja lista as skills relevantes para aquele contexto.
 
 ## Atalhos de Prompt (/aihub)
 
-Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a skill correspondente de `.agents/skills/` e seguir o seu fluxo. Todas as etapas de planejamento ou criação de artefatos **devem obrigatoriamente** passar pelo brainstorming e consulta ativa ao usuário:
+Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a skill correspondente de `.agents/skills/` **naquele momento** e seguir o seu fluxo. Todas as etapas de planejamento ou criação de artefatos **devem obrigatoriamente** passar pelo brainstorming e consulta ativa ao usuário:
 - `/aihub:iniciar` ou `/aihub:iniciar-projeto`: Ativa a skill `iniciar-projeto` para configurar `.ai/project.md`, `.ai/stack.md` e regras iniciais de negócio.
 - `/aihub:criar-plano` ou `/aihub:criar-plano-fase`: Ativa a skill `criar-plano` para desenhar o plano de uma nova fase local (`.planning/PLAN_VN/plan.md`).
 - `/aihub:criar-task` ou `/aihub:criar-tarefa`: Ativa a skill `criar-task` para gerar uma nova tarefa em `.planning/PLAN_VN/tasks/task_X_Y.md` usando o template.

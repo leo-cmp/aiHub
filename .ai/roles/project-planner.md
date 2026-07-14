@@ -28,3 +28,8 @@ Entrevistar o humano sobre o projeto e gerar/manter `.ai/project.md`, `.ai/stack
 
 ## Guidelines
 - Leia `.ai/guidelines/core/planning.md`.
+
+## Skills
+- `brainstorming`: use para entrevistar o usuario antes de criar ou atualizar qualquer arquivo de configuracao.
+- `iniciar-projeto`: use ao fazer o bootstrap inicial do projeto.
+- `atualizar-projeto`: use ao sincronizar novas regras de negocio ou alteracoes de escopo.

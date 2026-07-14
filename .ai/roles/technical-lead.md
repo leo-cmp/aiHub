@@ -21,3 +21,11 @@ Planejar a execucao tecnica em fases, tasks, issues e criterios de aceite.
 - Leia `.ai/project.md` e `.ai/guidelines/domain/business-rules/index.md`.
 - Leia `.ai/stack.md` e o(s) arquivo(s) de stack indicado(s) em `.ai/guidelines/stacks/` quando planejar backend ou frontend.
 - Leia `.ai/guidelines/core/database.md` quando houver schema ou queries.
+
+## Skills
+- `brainstorming`: use antes de criar planos, fases ou tasks para alinhar com o usuario.
+- `criar-plano`: use ao desenhar um novo plano de fase.
+- `criar-task`: use ao gerar tasks detalhadas.
+- `writing-plans`: use como referencia de boas praticas ao escrever planos.
+- `executar-task`: use ao coordenar a execucao de tasks planejadas.
+- `iagentbot`: use em execucoes longas para notificar o usuario e aguardar resposta quando necessario.

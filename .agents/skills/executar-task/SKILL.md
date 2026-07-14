@@ -24,7 +24,9 @@ disable-model-invocation: false
      > Antes de modificar ou criar qualquer arquivo de código operacional do projeto, invoque a skill de `brainstorming` para apresentar sua proposta de design técnico e arquitetura para a tarefa. Faça perguntas uma a uma sobre pontos ambíguos e obtenha aprovação expressa do design pelo usuário. **Não faça suposições nem decida caminhos de implementação de forma silenciosa.**
    - Atualize `status: in_progress` e `updated_at` com data/hora atual.
    - Confirme que esta em branch propria da task (nao em main/develop).
-   - Leia as guidelines indicadas pelo cargo da task.
+   - Identifique o cargo (`role`) indicado na task (campo `role` no cabecalho ou no corpo da task).
+   - Leia o arquivo de role correspondente em `.ai/roles/<role>.md` e assuma o comportamento daquele cargo.
+   - Leia as guidelines e skills indicadas pela role antes de iniciar a execucao.
 
 4. **Executar:**
    - Siga os passos do `Plano de Execucao` da task.
