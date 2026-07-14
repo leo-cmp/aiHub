@@ -32,6 +32,7 @@ disable-model-invocation: false
    - Siga os passos do `Plano de Execucao` da task.
    - Atualize a secao `Estado Atual` a cada passo significativo.
    - Pare para fazer perguntas quando surgirem duvidas.
+   - Se `.ai/project.md` § Stack tiver o bullet `**Atomic Design:**` marcando o projeto como obrigatorio, leia `.ai/guidelines/core/atomic-design.md` e siga a secao "Durante a execucao" ao pe da letra.
 
 5. **Registrar evidencias:**
    - Toda acao concluida deve ir para `Log de Evidencias` com: data/hora + comando + saida + exit code.
@@ -40,6 +41,7 @@ disable-model-invocation: false
    - Consulte `.ai/guidelines/core/execution.md` secao "Registro de Evidencias".
 
 6. **Concluir:**
+   - Se `.ai/project.md` § Stack tiver o bullet `**Atomic Design:**` marcando o projeto como obrigatorio, siga o "Gate final" de `.ai/guidelines/core/atomic-design.md` antes de marcar a task como `done`.
    - Marque criterios de aceite como `[x]` SOMENTE com prova registrada.
    - Atualize `status: done` e `updated_at`.
    - Atualize `plan.md` com o progresso.

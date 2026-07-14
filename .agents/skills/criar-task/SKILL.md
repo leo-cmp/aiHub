@@ -28,6 +28,7 @@ Esta skill deve ser ativada quando o usuário solicitar a criação de uma nova 
      - **Regras de Validação**: Campos obrigatórios, limites de dados e comportamento em erros de entrada.
      - **Cenários de Teste**: Descrever cenários de sucesso (happy path) e falha/limites.
      - **Recomendação de Modelo**: Declarar no cabeçalho o modelo sugerido, cargo recomendado (role) e motivo.
+     - **Atomic Design** (se `.ai/project.md` § Stack tiver o bullet `**Atomic Design:**` marcando o projeto como obrigatório): leia `.ai/guidelines/core/atomic-design.md` e siga a seção "No planejamento da task" ao pé da letra — liste no Plano de Execução, por camada (Atoms/Molecules/Organisms/Templates/Pages), quais componentes novos serão criados e quais existentes serão reaproveitados.
 
 4. **Criar a Issue no GitHub:**
    - Confirme o repositório oficial (`git remote -v` ou `gh repo view`) conforme `.ai/project.md` antes de criar qualquer coisa remota.

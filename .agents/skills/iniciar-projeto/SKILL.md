@@ -18,6 +18,7 @@ Esta skill deve ser ativada quando o usuário solicitar a inicialização ou con
    - Garanta que a pasta `.ai/` exista na raiz do projeto principal.
    - Escreva ou atualize `.ai/project.md` com a descrição do projeto, idioma da UI (pt-BR por padrão), ambiente, repositório oficial e link para regras de negócio.
    - Escreva ou atualize `.ai/stack.md` listando as linguagens, frameworks e indicando as diretrizes globais daquela stack (ex: `laravel.md`).
+   - Pergunte ao usuário se o frontend do projeto vai seguir Atomic Design (componentização estrita — ex: View Cells, componentes React/Vue, Blade components). Se sim, adicione em `.ai/project.md` § `Stack` o bullet `- **Atomic Design:** obrigatório (<mecanismo de componentização da stack>)` — isso ativa `.ai/guidelines/core/atomic-design.md` automaticamente para `criar-task` e `executar-task`. Se não, não adicione o bullet.
 
 3. **Mapear Regras de Negócio Iniciais:**
    - Crie o diretório `.ai/guidelines/domain/business-rules/`.
