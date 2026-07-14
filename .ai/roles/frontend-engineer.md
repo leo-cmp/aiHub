@@ -19,3 +19,9 @@ Implementar interfaces claras, responsivas e consistentes com o produto.
 - Leia `.ai/guidelines/core/frontend.md`.
 - Leia `.ai/stack.md` e o(s) arquivo(s) de stack indicado(s) em `.ai/guidelines/stacks/`.
 - Leia `.ai/guidelines/core/testing.md` quando houver teste ou fluxo verificavel.
+
+## Skills
+- `daisyui`: use ao trabalhar com componentes e temas daisyUI.
+- `tailwindcss-development`: use ao aplicar estilos com Tailwind CSS.
+- `frontend-design`: use ao criar ou revisar layouts e experiencia visual.
+- `web-design-guidelines`: use como referencia de boas praticas de design web.

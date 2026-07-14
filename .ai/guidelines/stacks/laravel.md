@@ -8,3 +8,7 @@
 - Se criar ou alterar migrations, rode `php artisan migrate` antes dos testes de aceite.
 - Se criar ou alterar seeders, rode o seeder especifico ou `php artisan db:seed` antes dos testes de aceite.
 - Rode `vendor/bin/pint --dirty --format agent` apos alterar PHP.
+
+## Skills
+- `laravel-best-practices`: use como referencia de padroes e boas praticas Laravel.
+- `socialite-development`: use ao implementar autenticacao social (OAuth) com Laravel Socialite.

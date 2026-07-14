@@ -9,7 +9,7 @@ Este projeto segue [Conventional Commits](https://www.conventionalcommits.org/),
 
 - **Tipos permitidos**: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`, `perf`, `build`, `ci`.
   - Use `refactor` (nao `refact`) e `feat` (nao `feature`) para manter consistencia com commits anteriores.
-- **Mensagem de commit**: `tipo: descricao curta no infinitivo/imperativo` (ex.: `fix: corrige race condition no idempotente do install`).
+- **Mensagem de commit**: `tipo: descricao curta no infinitivo/imperativo` (ex.: `fix: corrige race condition no idempotente do install`). Nunca adicione trailers como `Co-authored-by` ou assinaturas de agente nos commits ou PRs.
 - **Nome de branch**: `tipo/descricao-curta-em-kebab-case`, usando o mesmo `tipo` do commit predominante daquela branch (ex.: `fix/race-condition-install`).
 - **Titulo de PR**: segue a mesma convencao do commit (`tipo: descricao`). Para PRs ligados a uma task executavel, mantenha tambem a regra de incluir `Task X.Y` no titulo (ver abaixo).
 - **Resolução de Conflitos**: Se forem detectados conflitos no Pull Request remoto, faça a mesclagem local da branch base mais recente (`git fetch origin` seguido de `git merge origin/main`) na sua branch de feature, resolva os conflitos de forma local, execute os testes de validação e envie a atualização.

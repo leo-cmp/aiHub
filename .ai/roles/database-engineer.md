@@ -20,3 +20,6 @@ Garantir schema, queries e integridade de dados compativeis com as regras de neg
 - Leia `.ai/stack.md` e o(s) arquivo(s) de stack indicado(s) em `.ai/guidelines/stacks/` para comandos de migration.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
 - Leia `.ai/guidelines/core/testing.md` se houver alteracao testavel.
+
+## Skills
+- `systematic-debugging`: use ao investigar inconsistencias de dados ou queries com comportamento inesperado.
