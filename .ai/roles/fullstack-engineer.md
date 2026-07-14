@@ -20,6 +20,7 @@ Implementar tasks que atravessam backend e frontend com testes e aderencia ao pl
 - Leia `.ai/guidelines/core/frontend.md`.
 - Leia `.ai/guidelines/core/testing.md`.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
+- Leia `.ai/guidelines/core/git-pr.md` ao fazer commits ou abrir PRs.
 
 ## Skills
 - `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.

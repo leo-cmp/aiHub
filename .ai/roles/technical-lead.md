@@ -21,6 +21,7 @@ Planejar a execucao tecnica em fases, tasks, issues e criterios de aceite.
 - Leia `.ai/project.md` e `.ai/guidelines/domain/business-rules/index.md`.
 - Leia `.ai/stack.md` e o(s) arquivo(s) de stack indicado(s) em `.ai/guidelines/stacks/` quando planejar backend ou frontend.
 - Leia `.ai/guidelines/core/database.md` quando houver schema ou queries.
+- Leia `.ai/guidelines/core/git-pr.md` ao fazer commits ou abrir PRs.
 
 ## Skills
 - `brainstorming`: use antes de criar planos, fases ou tasks para alinhar com o usuario.

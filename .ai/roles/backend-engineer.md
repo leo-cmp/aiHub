@@ -20,6 +20,7 @@ Implementar backend com seguranca, testes e regras de negocio corretas.
 - Leia `.ai/guidelines/core/database.md` se houver migration, query ou schema.
 - Leia `.ai/guidelines/core/testing.md` se criar ou alterar testes.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
+- Leia `.ai/guidelines/core/git-pr.md` ao fazer commits ou abrir PRs.
 
 ## Skills
 - `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.
