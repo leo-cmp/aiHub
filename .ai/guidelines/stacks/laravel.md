@@ -11,4 +11,3 @@
 
 ## Skills
 - `laravel-best-practices`: use como referencia de padroes e boas praticas Laravel.
-- `socialite-development`: use ao implementar autenticacao social (OAuth) com Laravel Socialite.
