@@ -11,4 +11,3 @@
 - Para tasks de execucao, a mensagem pronta deve pedir para seguir `.ai/guidelines/core/execution.md`.
 - Se nao existir task para a demanda, Codex/GPT-5.5, Gemini ou Copilot deve assumir `technical-lead` e criar task/issue antes de encaminhar.
 - Ao criar ou atualizar task executavel, registre no cabecalho `Modelo recomendado`, `Substitutos se Anthropic indisponivel`, `Cargo recomendado` e `Motivo`.
-- Quando o humano usar o prefixo `[SUDO]`, Codex/GPT-5.5, Gemini e Copilot podem ser recomendados ou assumir cargos normalmente atribuidos ao Claude, conforme o override critico em `AGENTS.md`.
