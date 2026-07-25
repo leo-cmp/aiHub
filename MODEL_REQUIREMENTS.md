@@ -1,0 +1,40 @@
+# Requisitos de Modelo — aiHub
+
+O aiHub é projetado para LLMs de fronteira. Modelos abaixo do mínimo podem funcionar mas com degradação.
+
+## Mínimo Recomendado
+
+| Requisito | Valor |
+|-----------|-------|
+| Instruction following | ≥ 85% (benchmark IF-Eval ou equivalente) |
+| Janela de contexto | ≥ 64K tokens |
+| Raciocínio multi-etapa | Capacidade de seguir instruções encadeadas sem perder coerência |
+
+## Modelos Testados
+
+| Modelo | Compatibilidade | Notas |
+|--------|----------------|-------|
+| Claude 4+ | ✅ Plena | Sistema projetado primariamente para Claude |
+| GPT-5+ | ✅ Plena | Lazy loading e roles funcionam bem |
+| Gemini 3+ | ✅ Plena | Testado com Gemini 3 Pro |
+| GPT-4o | ⚠️ Parcial | Funciona mas degrada em tarefas L3 (brainstorming complexo) |
+| Claude 3.5 | ⚠️ Parcial | Lazy loading menos confiável; carregar guidelines explicitamente |
+| Llama 4+ | ❌ Não testado | Teoricamente capaz (128K contexto) mas sem validação |
+| Modelos <32K contexto | ❌ Não recomendado | Sistema foi projetado para ≥64K |
+
+## O que Degrada com Modelos Mais Fracos
+
+| Funcionalidade | Impacto |
+|----------------|---------|
+| Lazy loading de skills | LLM pode não identificar quando carregar uma guideline |
+| Brainstorming completo (164 linhas) | Pode perder coerência após passo 4 |
+| Execução de tasks L3 | Múltiplas guidelines + skills podem exceder atenção |
+| Context Canary | Menos confiável em modelos com instruction following <80% |
+
+## Recomendação por Complexidade
+
+| Complexidade | Modelo Mínimo |
+|-------------|---------------|
+| L1 (trivial) | Qualquer modelo ≥32K contexto |
+| L2 (padrão) | GPT-4o / Claude 3.5+ |
+| L3 (complexo) | Claude 4+ / GPT-5+ / Gemini 3+ |

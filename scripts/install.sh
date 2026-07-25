@@ -12,27 +12,27 @@ mkdir -p "$TARGET/.ai/guidelines/domain/business-rules"
 mkdir -p "$TARGET/.ai/decisions"
 mkdir -p "$TARGET/.claude"
 
-ln -sfn .aihub/AGENTS.md "$TARGET/AGENTS.md"
-ln -sfn .aihub/AGENTS.md "$TARGET/CLAUDE.md"
+ln -sfn .aihub/src/AGENTS.md "$TARGET/AGENTS.md"
+ln -sfn .aihub/src/AGENTS.md "$TARGET/CLAUDE.md"
 
 for f in CODEX.md COPILOT.md ANTIGRAVITY.md; do
     if [ -L "$TARGET/$f" ]; then rm -f "$TARGET/$f"; fi
 done
 
-ln -sfn ../.aihub/.ai/roles "$TARGET/.ai/roles"
-ln -sfn ../../.aihub/.ai/guidelines/core "$TARGET/.ai/guidelines/core"
-ln -sfn ../../.aihub/.ai/guidelines/stacks "$TARGET/.ai/guidelines/stacks"
-ln -sfn ../../.aihub/.ai/guidelines/domain "$TARGET/.ai/guidelines/domain"
-ln -sfn ../../.aihub/.ai/templates "$TARGET/.ai/templates"
+ln -sfn ../.aihub/src/.ai/roles "$TARGET/.ai/roles"
+ln -sfn ../../.aihub/src/.ai/guidelines/core "$TARGET/.ai/guidelines/core"
+ln -sfn ../../.aihub/src/.ai/guidelines/stacks "$TARGET/.ai/guidelines/stacks"
+ln -sfn ../../.aihub/src/.ai/guidelines/domain "$TARGET/.ai/guidelines/domain"
+ln -sfn ../../.aihub/src/.ai/templates "$TARGET/.ai/templates"
 
 if [ ! -d "$TARGET/.agents" ]; then
-    cp -r "$ROOT_DIR/.agents" "$TARGET/.agents"
+    cp -r "$ROOT_DIR/src/.agents" "$TARGET/.agents"
 fi
 
 ln -sfn ../.agents/skills "$TARGET/.claude/skills"
 
 if [ ! -f "$TARGET/.mcp.json" ]; then
-    cp "$ROOT_DIR/.mcp.json" "$TARGET/.mcp.json"
+    cp "$ROOT_DIR/src/.mcp.json" "$TARGET/.mcp.json"
 fi
 
 if [ ! -f "$TARGET/.ai/project.md" ]; then
