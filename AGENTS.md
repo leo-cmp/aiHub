@@ -19,7 +19,7 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 
 ## Carregamento de Skills (Lazy Loading)
 
-**Nao carregue skills antecipadamente.** A unica skill universal e `caveman` (economia de tokens) — carregue-a sempre que for escrever uma resposta longa.
+**Nao carregue skills antecipadamente.**
 
 As demais skills so devem ser lidas quando:
 - O usuario acionar um atalho `/aihub:*` explicitamente, OU
@@ -60,11 +60,11 @@ Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
 ## Fluxo Obrigatorio
 
 
-1. Identifique qual agente voce e: Codex, Claude, Antigravity ou Copilot.
-2. Identifique a natureza da demanda atual.
-3. Leia `.ai/roles/index.md`.
-4. Leia apenas o arquivo do cargo aplicavel.
-5. Leia somente as guidelines indicadas pelo cargo ou pela demanda.
+1. Identifique a natureza da demanda atual.
+2. Leia `.ai/roles/index.md`.
+3. Leia apenas o arquivo do cargo aplicavel.
+4. Leia somente as guidelines indicadas pelo cargo ou pela demanda.
+5. Carregue a skill `caveman` (`.agents/skills/caveman/SKILL.md`) — ela está no próprio aiHub.
 
 Nao carregue todos os cargos nem todas as guidelines por padrao.
 
