@@ -26,6 +26,11 @@ As demais skills so devem ser lidas quando:
 - O cargo ativo ou a guideline de stack indicar explicitamente a skill, OU
 - A demanda atual exigir o uso de uma skill especifica.
 
+**Limite de skills por sessao:** Maximo de 5 skills carregadas. Apos atingir o limite:
+- Se a demanda exigir mais skills, considere encerrar a sessao atual e abrir nova.
+- Skills como `caveman` (carregada no boot) contam no limite.
+- Skills de stack (`laravel-best-practices`, `tailwindcss-development`, etc.) contam individualmente.
+
 Carregar skills desnecessariamente consome contexto e degrada a sessao. Cada role e guideline de stack ja lista as skills relevantes para aquele contexto.
 
 ## Atalhos de Prompt (/aihub)
@@ -72,6 +77,12 @@ Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
 Nao carregue todos os cargos nem todas as guidelines por padrao.
 
 Tasks de implementacao devem sempre seguir `.ai/guidelines/core/execution.md`.
+
+**Limite de escopo:** Nenhuma task deve modificar mais de 10 arquivos.
+Se a implementacao exigir mais:
+- Quebre em sub-tasks menores.
+- Cada sub-task deve ter seu proprio criterio de aceite e PR.
+- Tasks L3 (complexas) naturalmente exigem quebra — nunca implemente L3 como task unica.
 
 ## Memória entre Sessões
 

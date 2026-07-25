@@ -29,6 +29,8 @@
 - O bloco de recomendacao deve ficar antes de `Prioridade` ou do primeiro contexto da task, para que o roteamento de execucao seja visivel sem ler a task inteira.
 - Use modelo forte para tasks que cruzam backend, frontend, regras financeiras, schema, integracoes ou muitos testes; use modelo economico para alteracoes pequenas, localizadas e reversiveis.
 - Ao criar nova task, use o template de `.ai/templates/task.md` como base.
+- Ao criar task, verifique se o escopo estimado ultrapassa 10 arquivos. Se sim, quebre em sub-tasks antes de criar a task.
+- O campo `Plano de Execucao` da task deve listar os arquivos esperados.
 - Toda task deve ter `created_at` preenchido na criacao e `updated_at` atualizado a cada mudanca de status ou progresso significativo.
 - A secao `Estado Atual` da task deve refletir o ultimo ponto de parada para facilitar handoff entre sessoes.
 

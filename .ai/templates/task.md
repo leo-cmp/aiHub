@@ -42,7 +42,16 @@ Cada entrada deve ter: data/hora + acao + comando executado + saida + exit code.
 
 ## Erros e Correcoes
 
+Se um criterio falhar 3x consecutivas, nao registre como "Erros e Correcoes" —
+registre como "BLOQUEIO" e pare.
+
 * [Descricao do erro] → [Causa] → [Correcao aplicada + prova]
+
+## BLOQUEIO
+
+Registre aqui criterios que falharam 3x consecutivas. Nao tente correcao — aguarde orientacao do usuario.
+
+* [Criterio X] — [3 tentativas resumidas] — [data/hora]
 
 ## Nao Verificado
 
