@@ -22,6 +22,7 @@ Validar qualidade, criterios de aceite, testes, PRs e prontidao de release.
 - Leia `.ai/guidelines/domain/business-rules/index.md`.
 
 ## Skills
+- `revisar`: use para auto-review do diff antes de abrir PR.
 - `requesting-code-review`: use ao preparar um PR para revisao.
 - `receiving-code-review`: use ao revisar um PR recebido.
 - `test-driven-development`: use como referencia ao validar cobertura de testes.

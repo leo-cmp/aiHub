@@ -26,4 +26,4 @@ Implementar backend com seguranca, testes e regras de negocio corretas.
 - `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.
 - `test-driven-development`: use ao criar ou alterar logica com testes.
 - `executar-task`: use ao executar uma task planejada, seguindo o fluxo de execucao estruturada.
-- `iagentbot`: use em tarefas longas para notificar o usuario e aguardar resposta quando necessario.
+- Notifique o usuario em tarefas longas (use a ferramenta de mensagem disponivel no ambiente).

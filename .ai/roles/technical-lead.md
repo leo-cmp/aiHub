@@ -29,4 +29,4 @@ Planejar a execucao tecnica em fases, tasks, issues e criterios de aceite.
 - `criar-task`: use ao gerar tasks detalhadas.
 - `writing-plans`: use como referencia de boas praticas ao escrever planos.
 - `executar-task`: use ao coordenar a execucao de tasks planejadas.
-- `iagentbot`: use em execucoes longas para notificar o usuario e aguardar resposta quando necessario.
+- Notifique o usuario em execucoes longas (use a ferramenta de mensagem disponivel no ambiente).

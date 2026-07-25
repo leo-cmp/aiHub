@@ -40,3 +40,19 @@ Regras:
 - NUNCA marque `[x]` em criterio de aceite sem prova.
 - Log narrativo sem evidencia nao conta como conclusao.
 - Erros encontrados devem registrar: erro + causa + correcao + prova de que a correcao funcionou.
+
+## Checklist de Encerramento (Obrigatório)
+
+Antes de marcar qualquer task como concluída, confirme TODOS os itens:
+
+- [ ] Testes relacionados passam (`exit 0`)
+- [ ] Lint/formatacão passam (`exit 0`)
+- [ ] `git diff --stat` mostra apenas arquivos esperados para esta task
+- [ ] `git diff` não contém: comentários de debug, `dd()`, `var_dump()`, `console.log()`
+- [ ] Nenhum arquivo de outra task foi alterado acidentalmente
+- [ ] Log de Evidências registrado na task (comando + saída + exit code)
+- [ ] Skill `revisar` executada (3 perguntas respondidas)
+- [ ] `plan.md` atualizado com progresso da task
+- [ ] `.ai/session-memory.md` atualizado
+
+Se qualquer item falhar, NÃO marque a task como concluída. Corrija e reexecute o checklist.
