@@ -70,11 +70,28 @@ Nao carregue todos os cargos nem todas as guidelines por padrao.
 
 Tasks de implementacao devem sempre seguir `.ai/guidelines/core/execution.md`.
 
-## Memoria do Projeto
+## Memória entre Sessões
 
-No inicio de cada sessao, se a ferramenta ThreadBridge estiver disponivel, carregue a memoria do projeto para o diretorio atual antes de analisar o repositorio.
+No início de cada sessão:
+1. Leia `.ai/session-memory.md`.
+2. Se contiver task ativa e "Próximo Passo", retome de onde parou.
+3. Confira se branch e task ainda são válidas (`git branch --show-current`).
+4. Se o arquivo estiver vazio ou não existir, siga o fluxo normal de roteamento.
 
-Ao final de sessoes relevantes, atualize a memoria com decisoes, estado atual, pendencias e evidencias importantes.
+Ao final da sessão (ou quando contexto degradar — ver Context Canary):
+1. Atualize `.ai/session-memory.md` com:
+   - Task ativa e status
+   - Branch atual
+   - Último comando executado com exit code
+   - Progresso (checklist do que foi feito/falta)
+   - Pendências e bloqueios
+   - Próximo passo prioritário
+2. Atualize o cabeçalho com data/hora, agente e modelo.
+
+Importante:
+- Seja conciso. Máximo 50 linhas no total.
+- Use checkboxes `[x]` / `[ ]` para progresso.
+- Liste bloqueios com clareza para o próximo agente decidir.
 
 ## Flexibilidade de Agentes e Cargos
 
@@ -126,3 +143,5 @@ O contexto do projeto deve ser lido de:
 1. `.ai/project.md` (o que e o projeto, repositorio oficial, idioma da UI, ambiente, link para regras de negocio)
 2. `.ai/stack.md` (stack(s)/linguagens do projeto e quais arquivos de `.ai/guidelines/stacks/` consultar)
 3. `.ai/guidelines/domain/business-rules/index.md` (indice de regras de negocio especificas)
+4. `.ai/session-memory.md` (estado da última sessão)
+5. `.ai/decisions.md` (decisões de arquitetura/stack/regras)
