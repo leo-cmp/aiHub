@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+case "$(uname -s 2>/dev/null || echo 'Unknown')" in
+    MINGW*|MSYS*|CYGWIN*)
+        echo "AVISO: Ambiente Windows detectado sem WSL."
+        echo "O aiHub requer ambiente Unix (Linux, macOS ou Windows com WSL)."
+        echo "Alternativas:"
+        echo "  1. Use WSL (recomendado): https://learn.microsoft.com/windows/wsl/install"
+        echo "  2. Instale manualmente: copie src/AGENTS.md para a raiz, src/.ai/ para .ai/, etc."
+        echo "  3. Use Git Bash e substitua symlinks por copias (menos recomendado)"
+        exit 1
+        ;;
+esac
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 TARGET="${1:-..}"

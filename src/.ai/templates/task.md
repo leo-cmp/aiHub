@@ -36,9 +36,11 @@ issue: "[URL da issue GitHub]"
 
 ## Log de Evidencias
 
-Cada entrada deve ter: data/hora + acao + comando executado + saida + exit code.
+Cada entrada deve ter: data/hora + acao + comando executado + exit code + resumo (1 linha).
 
-* YYYY-MM-DD HH:mm - [Acao: comando → saida (exit code)]
+Formato:
+* YYYY-MM-DD HH:mm - [Acao] `comando` → exit 0 | Resumo: [1 linha]
+* YYYY-MM-DD HH:mm - [Acao] `comando` → exit 0 | Saida longa: ver arquivo anexo
 
 ## Contador de Tentativas
 

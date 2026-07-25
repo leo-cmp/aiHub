@@ -4,6 +4,11 @@
 - Siga `.ai/guidelines/core/environment.md`; neste projeto os comandos Laravel rodam no PHP local.
 - Use `search-docs` para documentacao versionada antes de implementar APIs ou padroes.
 - Crie arquivos Laravel com `php artisan make:* --no-interaction` quando aplicavel.
+- **Antes de cada `make:*`:** verifique se o artefato ja existe.
+  - Model: `test -f app/Models/<Nome>.php && echo "EXISTE"`
+  - Migration: `ls app/database/migrations/*_create_<tabela>_table.php 2>/dev/null`
+  - Controller: `test -f app/Http/Controllers/<Nome>.php && echo "EXISTE"`
+  - Se existir: NAO recrie. Pergunte ao usuario se deve alterar o existente ou criar com outro nome.
 - Use `declare(strict_types=1)`, tipagem explicita e nomes descritivos.
 - Se criar ou alterar migrations, rode `php artisan migrate` antes dos testes de aceite.
 - Se criar ou alterar seeders, rode o seeder especifico ou `php artisan db:seed` antes dos testes de aceite.

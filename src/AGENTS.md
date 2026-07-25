@@ -66,8 +66,16 @@ Se L3: aplique também os circuit breakers (máx 10 arquivos, máx 5 skills, má
 ## Fast-Track (L1 — Trivial)
 
 Se a demanda atender TODOS os critérios abaixo, pule o fluxo normal e execute diretamente:
+
+**Gatilhos por keyword (dispensa analise):**
+- "adiciona campo X na tabela Y"
+- "renomeia X para Y"
+- "remove X"
+- "corrige typo em X"
+- "muda tipo de X para Y"
+
+**Critérios de elegibilidade:**
 - 1 arquivo afetado (ou 1 migration + 1 model do mesmo domínio)
-- Operação: add/rename/remove/change type/fix typo
 - Sem criação de schema novo (tabela/nova entidade)
 - Sem regra de negócio envolvida
 - Sem alteração de interface pública (API/rota)
@@ -76,7 +84,7 @@ Fluxo fast-track:
 1. Confirme o arquivo alvo existe
 2. Faça a alteração
 3. Rode lint/teste relacionado
-4. Registre no Log de Evidencias (comando + saida + exit code)
+4. Registre no Log de Evidencias (comando + exit code + resumo 1 linha)
 5. Reporte concluído
 
 Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
@@ -88,7 +96,10 @@ Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
 2. Leia `.ai/roles/index.md`.
 3. Leia apenas o arquivo do cargo aplicavel.
 4. Leia somente as guidelines indicadas pelo cargo ou pela demanda.
-5. Carregue a skill `caveman` (`.agents/skills/caveman/SKILL.md`) — ela está no próprio aiHub.
+5. Verifique as skills listadas na role: para cada skill, confirme que o diretorio existe em `.agents/skills/<skill>/`.
+   - Se existir: carregue quando necessario.
+   - Se NAO existir: ignore a skill (nao tente carregar) e mencione no inicio da execucao: "Role referencia skill `<skill>` que nao existe no projeto."
+6. Carregue a skill `caveman` (`.agents/skills/caveman/SKILL.md`) — ela está no próprio aiHub.
 
 Nao carregue todos os cargos nem todas as guidelines por padrao.
 
