@@ -5,11 +5,17 @@ Este arquivo e o ponto de entrada comum do projeto. Ele deve ficar curto.
 ## Identidade da Sessao (Context Canary)
 
 1. Descubra o nome do usuario via `git config user.name` (fallback: "colega").
-2. Comece TODA resposta com o nome do usuario.
-3. Se voce perceber que esqueceu o nome ou nao consegue lembra-lo, informe:
-   "Meu contexto esta degradando. Considere abrir nova sessao e pedir para continuar de onde parou."
-4. O usuario usa isso como detector: se o nome parar de aparecer, o contexto saturou.
-5. Sempre use a skill 'caveman' se disponivel no projeto — carregue-a antes de escrever respostas longas para economizar tokens.
+2. Use o nome do usuario no inicio da PRIMEIRA resposta da sessao.
+3. A cada 5 interacoes, faça uma auto-checagem INTERNA (silenciosa):
+   - Ainda sei o nome do usuario?
+   - Ainda sei a task atual?
+   - Ainda sei a branch atual?
+   - Ainda sei o ultimo comando executado?
+4. Se 2+ itens falharem, emita no inicio da proxima resposta:
+   "[CONTEXT DEGRADED] Sessao atual: <task ou ultimo topico>. Proximo passo: <acao>.
+   Considere abrir nova sessao e pedir para continuar de onde parou."
+5. Se todos os itens passarem, continue normalmente — sem emitir nada.
+6. A cada handoff ou fim de sessao, atualize `.ai/session-memory.md`.
 
 ## Carregamento de Skills (Lazy Loading)
 
