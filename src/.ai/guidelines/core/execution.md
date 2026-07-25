@@ -7,6 +7,7 @@
 - Nao execute pedido generico como "conforme planejado"; exija caminho de task em `.planning/PLAN_VN/tasks/*.md`.
 - Se criar ou alterar migrations/seeders, rode-os conforme `.ai/guidelines/stacks/<stack>.md` antes dos testes de aceite.
 - Antes de concluir, rode formatacao e o criterio de aceite da task.
+- Antes de criar qualquer artefato (model, migration, controller, componente, view), verifique se ele ja existe. Use `find` ou `ls`.
 - Antes de encerrar task executavel, confirme o checklist de PR:
   - branch propria da task existe e nao e branch de PR ja mergeado;
   - branch foi enviada para `origin`;
@@ -25,15 +26,20 @@
 
 Toda afirmacao de "fiz", "corrigi", "implementei" ou "funciona" DEVE ter prova.
 
-Prova = comando executado + saida relevante + exit code.
-Use os comandos nativos da stack do projeto (consulte `.ai/stack.md`).
+Prova = comando executado + exit code + resumo (1 linha).
+
+Formato no Log de Evidencias da task:
+* YYYY-MM-DD HH:mm - [Acao] `comando` → exit 0 | Resumo: 42 tests passed, 0 failed
+
+Se a saida for longa (>10 linhas), salve em `.planning/PLAN_VN/evidencias/task_X_Y_step_N.log` e referencie:
+* YYYY-MM-DD HH:mm - [Acao] `comando` → exit 0 | Ver saida: `.planning/PLAN_VN/evidencias/task_1_2_step_3.log`
 
 Exemplos de provas validas (adapte para a stack do projeto):
-- `php spark test → Tests: 42, Failures: 0 (exit 0)`
-- `php spark migrate → Migrated: 2026-06-24_CreateUsers (exit 0)`
-- `phpstan analyse app/ --level=5 → 0 errors (exit 0)`
-- `npm test → 47 passed, 0 failed (exit 0)`
-- `python -m pytest → 23 passed (exit 0)`
+- `php spark test → exit 0 | Resumo: Tests: 42, Failures: 0`
+- `php spark migrate → exit 0 | Resumo: Migrated: 2026-06-24_CreateUsers`
+- `phpstan analyse app/ --level=5 → exit 0 | Resumo: 0 errors`
+- `npm test → exit 0 | Resumo: 47 passed, 0 failed`
+- `python -m pytest → exit 0 | Resumo: 23 passed`
 
 Regras:
 - Se nao ha prova, marque o item como `⚠️ Nao verificado` na task.
@@ -51,11 +57,24 @@ Se o mesmo criterio de aceite falhar 3 vezes consecutivas:
 
 Nao continue ate o usuario responder com nova estrategia.
 
+### Limite de iteracoes por task
+
+Se uma task ultrapassar 20 interacoes (turns de conversa) sem ser concluida:
+1. Pause e reporte o progresso atual.
+2. Atualize `.ai/session-memory.md`.
+3. Pergunte ao usuario: "Task X.Y esta em andamento ha 20 interacoes. Progresso: [resumo]. Deseja continuar, pausar ou quebrar em sub-tasks?"
+
+O Context Canary (item 1.1) faz auto-checagem a cada 5 interacoes. O timeout de 20 interacoes e um limite superior — se o canary nao detectou degradacao mas a task ainda nao concluiu, o timeout forca uma pausa.
+
 ## Checklist de Encerramento (Obrigatório)
 
 Antes de marcar qualquer task como concluída, confirme TODOS os itens:
 
 - [ ] Testes relacionados passam (`exit 0`)
+- [ ] **Test relevance check:** Pelo menos 1 teste cobre explicitamente o codigo alterado.
+  - Confirme que o teste referencia: nome do metodo alterado, rota modificada, ou model/entidade da task.
+  - Use `grep` para buscar referencias nos arquivos de teste.
+  - Se nenhum teste cobrir: NAO marque como verificado. Adicione teste ou marque como `⚠️ Nao verificado`.
 - [ ] Lint/formatacão passam (`exit 0`)
 - [ ] `git diff --stat` mostra apenas arquivos esperados para esta task
 - [ ] `git diff` não contém: comentários de debug, `dd()`, `var_dump()`, `console.log()`
