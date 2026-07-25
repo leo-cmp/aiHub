@@ -29,4 +29,4 @@ description: >
 | Security | `rules/security.md` | XSS, CSRF, SQL injection, validacao de input |
 | Testing | `rules/testing.md` | HTTP tests, database tests, mocks |
 | Database | `rules/database.md` | Queries, joins, indices, performance, migrations |
-| Views | `rules/views.md` | View cells, layouts, partials, dados |
+| Views | `rules/views.md` | View cells (atomic design, cache, form cells), HTMX + cells (lazy load, inline edit, infinite scroll, swaps, triggers, CSRF), layouts, partials, dados |
