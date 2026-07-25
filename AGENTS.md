@@ -41,6 +41,7 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 - `/aihub:criar-task` ou `/aihub:criar-tarefa`: Ativa a skill `criar-task` para gerar uma nova tarefa em `.planning/PLAN_VN/tasks/task_X_Y.md` usando o template.
 - `/aihub:atualizar` ou `/aihub:atualizar-projeto`: Ativa a skill `atualizar-projeto` para sincronizar novas regras de negócio ou alterações de escopo em `.ai/project.md`.
 - `/aihub:brainstorm-lite`: Ativa a skill `brainstorming-lite` para tarefas L2.
+- `/aihub:atualizar-aihub`: Ativa a skill `atualizar-aihub` para atualizar o aiHub para a versao mais recente.
 
 > [!IMPORTANT]
 > **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente que executar atalhos de planejamento/codificação está proibido de fazer suposições ou criar arquivos em silêncio.
