@@ -15,7 +15,9 @@ disable-model-invocation: false
 
 2. **Validar a task:**
    - Confirme que a task tem: `id`, `title`, `created_at`, `status`, `criterios de aceite`.
-   - Confirme que existe issue GitHub vinculada (campo `issue` no cabecalho).
+   - Confirme que existe issue vinculada (GitHub ou local).
+   - Se o campo `issue:` apontar para caminho local (ex: `.planning/.../issue_X.md`), a task pode prosseguir.
+   - Se for task executavel sem issue alguma, pare e crie a issue primeiro.
    - Se faltar informacao, pare e pergunte ao usuario.
 
 3. **Preparar execucao:**

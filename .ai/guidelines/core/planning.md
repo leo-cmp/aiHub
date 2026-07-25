@@ -11,13 +11,19 @@
 - Corpo da Issue: secao "Historia" (Como [persona], quero [acao], para [beneficio] — inferida do `Objetivo` da task e confirmada com o humano antes de criar), secao "Criterios de Aceite" (copiada da task) e secao "Contexto Tecnico" (link do plano, link/caminho da task local, modelo recomendado e cargo).
 - **Criacao automatica via `gh`**: as skills `criar-plano` e `criar-task` devem criar milestone/issue diretamente via `gh` (nao apenas orientar o humano a criar manualmente). Antes de criar, confirme o repositorio oficial (`git remote -v` ou `gh repo view`) conforme `.ai/project.md`.
 - **Idempotencia e duplicidade**: antes de criar milestone ou issue, verifique primeiro a referencia local (`milestone:` em `plan.md`, `issue:` em `task.md`) — se ja preenchida, reuse e nao crie de novo. Se vazia, busque no GitHub por titulo igual; se ja existir, vincule ao existente em vez de duplicar. Crie apenas se nada for encontrado.
-- **Falha de `gh`**: se a chamada falhar (auth, rede, permissao), pare e avise o humano — nunca prossiga sem o vinculo de milestone/issue.
+- **Falha de `gh` — fallback offline**: se `gh` CLI nao estiver disponivel ou falhar (auth, rede, permissao):
+  1. Crie a issue como arquivo local: `.planning/PLAN_VN/issues/issue_X.md`
+  2. Formato do arquivo: use o template `.ai/templates/issue-local.md`
+  3. No campo `issue:` do cabecalho da task, preencha com o caminho local: `issue: .planning/PLAN_VN/issues/issue_X.md`
+  4. Marque a task como `⚠️ issue pendente de sincronizacao com GitHub`
+  5. Quando `gh` estiver disponivel, rode `scripts/sync-github.sh` (item 5.2) para criar as issues no GitHub
+- **Criacao de milestones offline:** mesmo principio. Crie `.planning/PLAN_VN/milestone.md` localmente.
 - Cada task executavel deve resultar em um PR proprio; agrupamento de tasks exige autorizacao explicita do humano.
 - Cada issue deve apontar para o arquivo local da task, e cada task deve guardar a issue.
 - Agentes devem ler `plan.md` e apenas a task atual, nao todas as tasks por padrao.
 - `index.md` e `roadmap.md` nao devem coexistir com `plan.md` para evitar duplicidade.
 - Toda demanda que virar trabalho deve ter task local antes de ir para execucao.
-- Toda task local deve ter issue GitHub antes de ir para execucao, salvo bloqueio explicito.
+- Toda task local deve ter issue vinculada (GitHub ou local) antes de ir para execucao, salvo bloqueio explicito.
 - Ao criar task, atualize `plan.md` com status, issue, progresso/listas e ordem de execucao.
 - Toda task executavel deve declarar no cabecalho: `Modelo recomendado`, `Substitutos se Anthropic indisponivel`, `Cargo recomendado` e `Motivo`.
 - O bloco de recomendacao deve ficar antes de `Prioridade` ou do primeiro contexto da task, para que o roteamento de execucao seja visivel sem ler a task inteira.
