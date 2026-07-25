@@ -51,10 +51,14 @@ disable-model-invocation: false
    - Se `.ai/project.md` § Stack tiver o bullet `**Atomic Design:**` marcando o projeto como obrigatorio, leia `.ai/guidelines/core/atomic-design.md` e siga a secao "Durante a execucao" ao pe da letra.
 
 5. **Registrar evidencias:**
-   - Toda acao concluida deve ir para `Log de Evidencias` com: data/hora + comando + saida + exit code.
-   - Se nao conseguir provar que algo funciona, registre em `Nao Verificado`.
-   - Erros encontrados vao para `Erros e Correcoes` com: erro + causa + correcao + prova.
-   - Consulte `.ai/guidelines/core/execution.md` secao "Registro de Evidencias".
+    - Toda acao concluida deve ir para `Log de Evidencias` com: data/hora + comando + saida + exit code.
+    - Se nao conseguir provar que algo funciona, registre em `Nao Verificado`.
+    - Erros encontrados vao para `Erros e Correcoes` com: erro + causa + correcao + prova.
+    - Consulte `.ai/guidelines/core/execution.md` secao "Registro de Evidencias".
+
+5.5. **Auto-review:** Execute a skill `revisar` (3 perguntas sobre o proprio diff).
+    - Se 3/3 passarem: prossiga.
+    - Se alguma falhar: corrija e reexecute.
 
 6. **Concluir:**
    - Se `.ai/project.md` § Stack tiver o bullet `**Atomic Design:**` marcando o projeto como obrigatorio, siga o "Gate final" de `.ai/guidelines/core/atomic-design.md` antes de marcar a task como `done`.

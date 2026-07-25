@@ -80,7 +80,7 @@ Antes de marcar qualquer task como concluída, confirme TODOS os itens:
 - [ ] `git diff` não contém: comentários de debug, `dd()`, `var_dump()`, `console.log()`
 - [ ] Nenhum arquivo de outra task foi alterado acidentalmente
 - [ ] Log de Evidências registrado na task (comando + saída + exit code)
-- [ ] Skill `revisar` executada (3 perguntas respondidas)
+- [ ] Skill `revisar` executada: 3/3 perguntas passaram
 - [ ] `plan.md` atualizado com progresso da task
 - [ ] `.ai/session-memory.md` atualizado
 
