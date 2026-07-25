@@ -22,6 +22,7 @@ disable-model-invocation: false
    - > [!IMPORTANT]
      > **BRAINSTORMING E DESIGN PRÉVIO MANDATÓRIO**:
      > Antes de modificar ou criar qualquer arquivo de código operacional do projeto, invoque a skill de `brainstorming` para apresentar sua proposta de design técnico e arquitetura para a tarefa. Faça perguntas uma a uma sobre pontos ambíguos e obtenha aprovação expressa do design pelo usuário. **Não faça suposições nem decida caminhos de implementação de forma silenciosa.**
+   - > **Brainstorming para L2:** Para tarefas de complexidade padrao (2-5 arquivos, sem nova regra de negocio), use `brainstorming-lite` em vez de `brainstorming` completo.
    - Atualize `status: in_progress` e `updated_at` com data/hora atual.
    - Confirme que esta em branch propria da task (nao em main/develop).
    - Identifique o cargo (`role`) indicado na task (campo `role` no cabecalho ou no corpo da task).
