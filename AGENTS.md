@@ -39,6 +39,24 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 > [!IMPORTANT]
 > **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente (Claude, Codex, Gemini ou Copilot) que executar esses atalhos ou qualquer skill de planejamento/codificação está **proibido de fazer suposições ou criar arquivos em silêncio**. A IA deve acionar a skill de `brainstorming`, fazer perguntas uma a uma ao usuário e obter aprovação expressa antes de gravar alterações.
 
+## Fast-Track (L1 — Trivial)
+
+Se a demanda atender TODOS os critérios abaixo, pule o fluxo normal e execute diretamente:
+- 1 arquivo afetado (ou 1 migration + 1 model do mesmo domínio)
+- Operação: add/rename/remove/change type/fix typo
+- Sem criação de schema novo (tabela/nova entidade)
+- Sem regra de negócio envolvida
+- Sem alteração de interface pública (API/rota)
+
+Fluxo fast-track:
+1. Confirme o arquivo alvo existe
+2. Faça a alteração
+3. Rode lint/teste relacionado
+4. Registre no Log de Evidencias (comando + saida + exit code)
+5. Reporte concluído
+
+Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
+
 ## Fluxo Obrigatorio
 
 
