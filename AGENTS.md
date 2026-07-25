@@ -111,9 +111,14 @@ Na nova sessao, o agente deve ler `.planning/` e a task ativa para retomar do po
 
 ## Prioridade
 
-As instrucoes do cargo selecionado vencem este arquivo.
-Se houver conflito entre modelo e cargo, o roteamento deste arquivo vence.
-Se `.ai/project.md` nao existir, a entrada `project-planner` vence qualquer outro roteamento.
+O sistema tem estados mutuamente exclusivos — apenas um se aplica por vez:
+
+1. `.ai/project.md` NAO existe → única ação: `project-planner` (bootstrap do projeto).
+2. `.ai/project.md` existe + task definida em `.planning/` → única ação: executar task conforme cargo indicado.
+3. `.ai/project.md` existe + sem task definida → única ação: `model-router` ou `technical-lead` decide.
+
+Não há conflito de prioridade — cada estado tem uma única ação válida.
+Se houver ambiguidade sobre qual estado se aplica, pergunte ao usuário.
 
 ## Contexto Base
 
