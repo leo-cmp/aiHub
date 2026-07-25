@@ -41,6 +41,16 @@ Regras:
 - Log narrativo sem evidencia nao conta como conclusao.
 - Erros encontrados devem registrar: erro + causa + correcao + prova de que a correcao funcionou.
 
+## Loop Detection (Circuit Breaker)
+
+Se o mesmo criterio de aceite falhar 3 vezes consecutivas:
+1. PARE imediatamente. Nao tente uma quarta abordagem.
+2. Registre no Log de Evidencias: as 3 tentativas, o que foi tentado em cada, e o erro.
+3. Atualize `.ai/session-memory.md` com o bloqueio.
+4. Informe o usuario: "Criterio X falhou 3 vezes. Tentativas: [resumo]. Aguardando orientacao."
+
+Nao continue ate o usuario responder com nova estrategia.
+
 ## Checklist de Encerramento (Obrigatório)
 
 Antes de marcar qualquer task como concluída, confirme TODOS os itens:

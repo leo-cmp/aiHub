@@ -22,4 +22,4 @@ Garantir schema, queries e integridade de dados compativeis com as regras de neg
 - Leia `.ai/guidelines/core/testing.md` se houver alteracao testavel.
 
 ## Skills
-- `systematic-debugging`: use ao investigar inconsistencias de dados ou queries com comportamento inesperado.
+_(nenhuma skill especifica — use guidelines e execution.md para debug e troubleshooting)_

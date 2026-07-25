@@ -26,6 +26,11 @@ As demais skills so devem ser lidas quando:
 - O cargo ativo ou a guideline de stack indicar explicitamente a skill, OU
 - A demanda atual exigir o uso de uma skill especifica.
 
+**Limite de skills por sessao:** Maximo de 5 skills carregadas. Apos atingir o limite:
+- Se a demanda exigir mais skills, considere encerrar a sessao atual e abrir nova.
+- Skills como `caveman` (carregada no boot) contam no limite.
+- Skills de stack (`laravel-best-practices`, `tailwindcss-development`, etc.) contam individualmente.
+
 Carregar skills desnecessariamente consome contexto e degrada a sessao. Cada role e guideline de stack ja lista as skills relevantes para aquele contexto.
 
 ## Atalhos de Prompt (/aihub)
@@ -36,9 +41,13 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 - `/aihub:criar-task` ou `/aihub:criar-tarefa`: Ativa a skill `criar-task` para gerar uma nova tarefa em `.planning/PLAN_VN/tasks/task_X_Y.md` usando o template.
 - `/aihub:atualizar` ou `/aihub:atualizar-projeto`: Ativa a skill `atualizar-projeto` para sincronizar novas regras de negócio ou alterações de escopo em `.ai/project.md`.
 - `/aihub:brainstorm-lite`: Ativa a skill `brainstorming-lite` para tarefas L2.
+- `/aihub:atualizar-aihub`: Ativa a skill `atualizar-aihub` para atualizar o aiHub para a versao mais recente.
+- `/aihub:gerar-prompt`: Ativa a skill `gerar-prompt` para gerar prompt de continuacao para nova sessao.
 
 > [!IMPORTANT]
-> **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente (Claude, Codex, Gemini ou Copilot) que executar esses atalhos ou qualquer skill de planejamento/codificação está **proibido de fazer suposições ou criar arquivos em silêncio**. A IA deve acionar a skill de `brainstorming`, fazer perguntas uma a uma ao usuário e obter aprovação expressa antes de gravar alterações.
+> **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente que executar atalhos de planejamento/codificação está proibido de fazer suposições ou criar arquivos em silêncio.
+> - **L2 (Padrão):** Use `brainstorming-lite` — 3 perguntas máx, sem spec document.
+> - **L3 (Complexo):** Use `brainstorming` completo — spec document + visual companion opcional.
 
 ## Fast-Track (L1 — Trivial)
 
@@ -70,6 +79,12 @@ Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
 Nao carregue todos os cargos nem todas as guidelines por padrao.
 
 Tasks de implementacao devem sempre seguir `.ai/guidelines/core/execution.md`.
+
+**Limite de escopo:** Nenhuma task deve modificar mais de 10 arquivos.
+Se a implementacao exigir mais:
+- Quebre em sub-tasks menores.
+- Cada sub-task deve ter seu proprio criterio de aceite e PR.
+- Tasks L3 (complexas) naturalmente exigem quebra — nunca implemente L3 como task unica.
 
 ## Memória entre Sessões
 

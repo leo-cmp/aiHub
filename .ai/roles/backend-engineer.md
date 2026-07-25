@@ -23,7 +23,5 @@ Implementar backend com seguranca, testes e regras de negocio corretas.
 - Leia `.ai/guidelines/core/git-pr.md` ao fazer commits ou abrir PRs.
 
 ## Skills
-- `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.
-- `test-driven-development`: use ao criar ou alterar logica com testes.
 - `executar-task`: use ao executar uma task planejada, seguindo o fluxo de execucao estruturada.
 - Notifique o usuario em tarefas longas (use a ferramenta de mensagem disponivel no ambiente).
