@@ -34,6 +34,7 @@ echo "--- Checking guideline references ---"
 if [ -d "$SRC/.ai" ]; then
     find "$SRC/.ai" -name "*.md" -print0 2>/dev/null | while IFS= read -r -d '' file; do
         (grep -oP '\.ai/guidelines/[^)\s]+\.md' "$file" 2>/dev/null || true) | while read -r ref; do
+            [[ "$ref" == *"<"* || "$ref" == *">"* ]] && continue
             if [ ! -f "$SRC/$ref" ]; then
                 echo "  BROKEN LINK: $ref referenced in $(basename "$file")"
                 echo "1" >> "$TMP"

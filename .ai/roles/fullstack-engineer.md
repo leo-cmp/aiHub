@@ -23,8 +23,6 @@ Implementar tasks que atravessam backend e frontend com testes e aderencia ao pl
 - Leia `.ai/guidelines/core/git-pr.md` ao fazer commits ou abrir PRs.
 
 ## Skills
-- `systematic-debugging`: use ao investigar bugs ou comportamentos inesperados.
-- `test-driven-development`: use ao criar ou alterar logica com testes.
 - `daisyui`: use ao trabalhar com componentes e temas daisyUI.
 - `tailwindcss-development`: use ao aplicar estilos com Tailwind CSS.
 - `executar-task`: use ao executar uma task planejada, seguindo o fluxo de execucao estruturada.

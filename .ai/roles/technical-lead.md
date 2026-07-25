@@ -27,6 +27,5 @@ Planejar a execucao tecnica em fases, tasks, issues e criterios de aceite.
 - `brainstorming`: use antes de criar planos, fases ou tasks para alinhar com o usuario.
 - `criar-plano`: use ao desenhar um novo plano de fase.
 - `criar-task`: use ao gerar tasks detalhadas.
-- `writing-plans`: use como referencia de boas praticas ao escrever planos.
 - `executar-task`: use ao coordenar a execucao de tasks planejadas.
 - Notifique o usuario em execucoes longas (use a ferramenta de mensagem disponivel no ambiente).
