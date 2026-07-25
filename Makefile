@@ -124,4 +124,5 @@ release:
 	@bash scripts/release.sh
 
 check:
+	-@bash scripts/validate.sh
 	@bash scripts/check-version.sh
