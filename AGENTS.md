@@ -42,6 +42,7 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 - `/aihub:atualizar` ou `/aihub:atualizar-projeto`: Ativa a skill `atualizar-projeto` para sincronizar novas regras de negócio ou alterações de escopo em `.ai/project.md`.
 - `/aihub:brainstorm-lite`: Ativa a skill `brainstorming-lite` para tarefas L2.
 - `/aihub:atualizar-aihub`: Ativa a skill `atualizar-aihub` para atualizar o aiHub para a versao mais recente.
+- `/aihub:gerar-prompt`: Ativa a skill `gerar-prompt` para gerar prompt de continuacao para nova sessao.
 
 > [!IMPORTANT]
 > **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente que executar atalhos de planejamento/codificação está proibido de fazer suposições ou criar arquivos em silêncio.
