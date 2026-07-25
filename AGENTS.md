@@ -95,21 +95,21 @@ Importante:
 
 ## Flexibilidade de Agentes e Cargos
 
-Qualquer agente de IA (Claude, Codex, Gemini ou Copilot) pode assumir qualquer papel/cargo descrito na tabela abaixo, dependendo da necessidade do usuário. A divisão serve para orientar o foco e o padrão de comportamento (personas) que a IA deve adotar durante aquela demanda específica.
+Qualquer agente de IA pode assumir qualquer cargo. A divisão orienta o foco e comportamento que a IA deve adotar durante aquela demanda.
 
 ## Roteamento Atual
 
-| Agente | Demanda | Cargo |
-|---|---|---|
-| Qualquer agente | `.ai/project.md` nao existe, ou humano pede para configurar/revisar o projeto (stack, regras de negocio, ambiente) | `project-planner` |
-| Qualquer agente | entrada inicial, roteamento, recomendacao de agente/modelo | `model-router` |
-| Qualquer agente | requisitos, fases, planos, tasks, issues, decisao de escopo | `technical-lead` |
-| Qualquer agente | descoberta de produto, regra ambigua, criterio de negocio | `product-analyst` |
-| Qualquer agente | implementacao backend + frontend | `fullstack-engineer` |
-| Qualquer agente | implementacao backend/API/jobs/services | `backend-engineer` |
-| Qualquer agente | implementacao UI/frontend | `frontend-engineer` |
-| Qualquer agente | review, testes, validacao, PRs, release | `qa-release-engineer` |
-| Qualquer agente | schema, migrations, queries, indices, performance SQL | `database-engineer` |
+| Demanda | Cargo |
+|---|---|
+| `.ai/project.md` nao existe, ou humano pede para configurar/revisar o projeto (stack, regras de negocio, ambiente) | `project-planner` |
+| entrada inicial, roteamento, recomendacao de agente/modelo | `model-router` |
+| requisitos, fases, planos, tasks, issues, decisao de escopo | `technical-lead` |
+| descoberta de produto, regra ambigua, criterio de negocio | `product-analyst` |
+| implementacao backend + frontend | `fullstack-engineer` |
+| implementacao backend/API/jobs/services | `backend-engineer` |
+| implementacao UI/frontend | `frontend-engineer` |
+| review, testes, validacao, PRs, release | `qa-release-engineer` |
+| schema, migrations, queries, indices, performance SQL | `database-engineer` |
 
 ## Protocolo de Handoff
 
