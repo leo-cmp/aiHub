@@ -38,7 +38,9 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 - `/aihub:brainstorm-lite`: Ativa a skill `brainstorming-lite` para tarefas L2.
 
 > [!IMPORTANT]
-> **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente (Claude, Codex, Gemini ou Copilot) que executar esses atalhos ou qualquer skill de planejamento/codificação está **proibido de fazer suposições ou criar arquivos em silêncio**. A IA deve acionar a skill de `brainstorming`, fazer perguntas uma a uma ao usuário e obter aprovação expressa antes de gravar alterações.
+> **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente que executar atalhos de planejamento/codificação está proibido de fazer suposições ou criar arquivos em silêncio.
+> - **L2 (Padrão):** Use `brainstorming-lite` — 3 perguntas máx, sem spec document.
+> - **L3 (Complexo):** Use `brainstorming` completo — spec document + visual companion opcional.
 
 ## Fast-Track (L1 — Trivial)
 
