@@ -12,7 +12,8 @@ case "$(uname -s 2>/dev/null || echo 'Unknown')" in
         ;;
 esac
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_PATH="$(readlink -f "$0" 2>/dev/null || realpath "$0" 2>/dev/null || echo "$0")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 TARGET="${1:-.}"
 # Se o argumento for "install" ou "install-force", é invocação via npx sem target
