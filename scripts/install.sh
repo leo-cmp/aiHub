@@ -92,7 +92,9 @@ EOF
 fi
 
 # session-memory.md
-cp "$SRC_DIR/.ai/session-memory.md" "$TARGET/.ai/session-memory.md"
+if [ ! -f "$TARGET/.ai/session-memory.md" ]; then
+    cp "$SRC_DIR/.ai/session-memory.md" "$TARGET/.ai/session-memory.md"
+fi
 
 # decisions.md
 cp "$SRC_DIR/.ai/decisions.md" "$TARGET/.ai/decisions.md"
