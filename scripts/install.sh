@@ -86,8 +86,13 @@ if [ ! -f "$TARGET/.ai/stack.md" ]; then
     cat > "$TARGET/.ai/stack.md" << 'EOF'
 # Stacks do Projeto
 
-Consulte as diretrizes específicas em:
-- [Laravel](file:///.ai/guidelines/stacks/laravel.md)
+> Preencha abaixo as stacks do projeto. Remova as que não se aplicam.
+
+Consulte as diretrizes específicas em `.ai/guidelines/stacks/`:
+
+- [ ] Backend: (ex: Laravel, CodeIgniter 4, Astro)
+- [ ] Frontend: (ex: Tailwind CSS, daisyUI)
+- [ ] Database: (ex: MySQL, PostgreSQL)
 EOF
 fi
 
