@@ -15,6 +15,12 @@ esac
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 TARGET="${1:-.}"
+# Se o argumento for "install" ou "install-force", é invocação via npx sem target
+case "$TARGET" in
+    install|install-force|--help|-h)
+        TARGET="."
+        ;;
+esac
 
 echo "=== l-nexus install ==="
 echo "Target: $TARGET"
