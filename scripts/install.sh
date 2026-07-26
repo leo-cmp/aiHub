@@ -90,8 +90,8 @@ if [ ! -f "$TARGET/.ai/stack.md" ]; then
 
 Consulte as diretrizes específicas em `.ai/guidelines/stacks/`:
 
-- [ ] Backend: (ex: Laravel, CodeIgniter 4, Astro)
-- [ ] Frontend: (ex: Tailwind CSS, daisyUI)
+- [ ] Backend: (ex: Laravel, CodeIgniter 4)
+- [ ] Frontend: (ex: Tailwind CSS, daisyUI, Astro)
 - [ ] Database: (ex: MySQL, PostgreSQL)
 EOF
 fi
