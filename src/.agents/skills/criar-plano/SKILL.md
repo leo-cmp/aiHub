@@ -10,7 +10,7 @@ disable-model-invocation: false
 > **OBRIGATORIEDADE DE BRAINSTORMING E DIÁLOGO**:
 > Você **NUNCA** deve criar arquivos de plano (`plan.md`) diretamente com base em suposições. Antes de escrever o arquivo, você deve obrigatoriamente invocar a skill de `brainstorming` para interagir com o usuário, propor caminhos, fazer perguntas uma a uma e validar o escopo da fase. Somente após a aprovação expressa do design pelo usuário você poderá gerar os arquivos físicos.
 
-Esta skill deve ser ativada quando o usuário solicitar o planejamento de uma nova fase, ou via comando `/aihub:criar-plano`.
+Esta skill deve ser ativada quando o usuário solicitar o planejamento de uma nova fase, ou via comando `/l-nexus:criar-plano`.
 
 ## Fluxo
 

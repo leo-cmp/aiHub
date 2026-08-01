@@ -19,8 +19,8 @@ setup_repo() {
   local origin_dir="$2"
 
   git init -b main "$repo_dir" >/dev/null
-  git -C "$repo_dir" config user.name "aiHub Test"
-  git -C "$repo_dir" config user.email "aihub-test@example.com"
+  git -C "$repo_dir" config user.name "l-nexus Test"
+  git -C "$repo_dir" config user.email "l-nexus-test@example.com"
 
   mkdir -p "$repo_dir/.ai/guidelines/stacks"
   printf "# CodeIgniter 4\n" > "$repo_dir/.ai/guidelines/stacks/codeigniter4.md"
@@ -70,7 +70,7 @@ test_submit_prompts_branch_uses_default_message_and_limits_commit_scope() {
 
   local subject
   subject="$(git -C "$repo_dir" log -1 --pretty=%s)"
-  [ "$subject" = "docs: atualizar diretrizes do aiHub" ] || fail "mensagem default inesperada: $subject"
+  [ "$subject" = "docs: atualizar diretrizes do l-nexus" ] || fail "mensagem default inesperada: $subject"
 
   local changed_files
   changed_files="$(git -C "$repo_dir" diff-tree --no-commit-id --name-only -r HEAD | sort)"

@@ -19,7 +19,7 @@ fi
 HIGHEST=$(printf '%s\n%s\n' "$LOCAL_TAG" "$REMOTE_LATEST" | sort -V | tail -1)
 
 if [ "$LOCAL_TAG" = "$REMOTE_LATEST" ]; then
-	echo "aiHub esta atualizado ($LOCAL_TAG)."
+	echo "l-nexus esta atualizado ($LOCAL_TAG)."
 elif [ "$HIGHEST" = "$REMOTE_LATEST" ]; then
 	echo "Nova versao disponivel: $REMOTE_LATEST (atual: $LOCAL_TAG). Rode 'make git-update' para atualizar."
 else

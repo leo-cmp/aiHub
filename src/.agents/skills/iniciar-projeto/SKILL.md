@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # Iniciar Projeto
 
-Esta skill deve ser ativada quando o usuário solicitar a inicialização ou configuração de um novo projeto, ou via comando `/aihub:iniciar`.
+Esta skill deve ser ativada quando o usuário solicitar a inicialização ou configuração de um novo projeto, ou via comando `/l-nexus:iniciar`.
 
 ## Fluxo
 
@@ -24,5 +24,5 @@ Esta skill deve ser ativada quando o usuário solicitar a inicialização ou con
    - Crie o diretório `.ai/guidelines/domain/business-rules/`.
    - Crie um arquivo inicial em `.ai/guidelines/domain/business-rules/index.md` listando as regras comerciais conhecidas ou pendentes de alinhamento com o usuário.
 
-4. **Verificar Instalação do aiHub:**
-   - Execute `make update` (ou `make install`) dentro da pasta `aiHub` para garantir que todos os links simbólicos dos agentes e diretrizes globais estejam criados devidamente na raiz do projeto pai.
+4. **Verificar Instalação do l-nexus:**
+   - Execute `npx @leo-cmp/l-nexus install` (ou `npx @leo-cmp/l-nexus install-force` para reinstalação) para garantir que todos os arquivos de agentes e diretrizes estejam presentes na raiz do projeto.

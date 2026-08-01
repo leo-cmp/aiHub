@@ -6,7 +6,7 @@ disable-model-invocation: false
 
 # Atualizar Projeto
 
-Esta skill deve ser ativada quando houver mudanças nas regras de negócio globais, nova stack ou reconfiguração do ambiente, ou via comando `/aihub:atualizar-projeto`.
+Esta skill deve ser ativada quando houver mudanças nas regras de negócio globais, nova stack ou reconfiguração do ambiente, ou via comando `/l-nexus:atualizar`.
 
 ## Fluxo
 

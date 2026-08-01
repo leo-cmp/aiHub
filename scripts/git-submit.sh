@@ -2,7 +2,7 @@
 set -euo pipefail
 
 GUIDELINES_PATH=".ai/guidelines"
-DEFAULT_COMMIT_MESSAGE="docs: atualizar diretrizes do aiHub"
+DEFAULT_COMMIT_MESSAGE="docs: atualizar diretrizes do l-nexus"
 
 die() {
   echo "Erro: $*" >&2
@@ -90,7 +90,7 @@ restore_stash_on_error() {
 trap restore_stash_on_error ERR
 
 echo "Guardando alteracoes de '$GUIDELINES_PATH/'..."
-git stash push -u -m "aihub git-submit guidelines" -- "$GUIDELINES_PATH" >/dev/null
+git stash push -u -m "l-nexus git-submit guidelines" -- "$GUIDELINES_PATH" >/dev/null
 stash_created=1
 
 echo "Trocando para a branch local 'main' sem atualizar do remoto..."

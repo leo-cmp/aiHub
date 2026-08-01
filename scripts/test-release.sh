@@ -19,8 +19,8 @@ setup_release_repo() {
   local origin_dir="$2"
 
   git init -b main "$repo_dir" >/dev/null
-  git -C "$repo_dir" config user.name "aiHub Test"
-  git -C "$repo_dir" config user.email "aihub-test@example.com"
+  git -C "$repo_dir" config user.name "l-nexus Test"
+  git -C "$repo_dir" config user.email "l-nexus-test@example.com"
 
   printf "0.2.0\n" > "$repo_dir/VERSION"
   git -C "$repo_dir" add VERSION

@@ -14,7 +14,7 @@ npx @leo-cmp/l-nexus install
 | Componente | Descrição |
 |-----------|-----------|
 | **Roles** (9 personas) | Backend, frontend, fullstack, database, QA, tech-lead, product-analyst, project-planner, model-router |
-| **Skills** (18 skills) | Brainstorming, brainstorming-lite, caveman, criar-plano, criar-task, executar-task, revisar, gerar-prompt, iniciar-projeto, atualizar-projeto, atualizar-aihub + stacks |
+| **Skills** (18 skills) | Brainstorming, brainstorming-lite, caveman, criar-plano, criar-task, executar-task, revisar, gerar-prompt, iniciar-projeto, atualizar-projeto, atualizar-l-nexus + stacks |
 | **Guidelines** (core + stacks) | Execution, planning, testing, git/PR, database, frontend, atomic-design, model-selection + Laravel, CI4, Tailwind, daisyUI, Astro |
 | **Templates** | plan.md, task.md, task-short.md, issue-local.md |
 | **MCP** | context7, github, sequential-thinking, chrome-devtools, daisyui-github |
@@ -79,7 +79,7 @@ projeto/
 | `/l-nexus:criar-plano` | Criar plano de fase |
 | `/l-nexus:criar-task` | Criar task detalhada |
 | `/l-nexus:atualizar` | Atualizar regras de negócio |
-| `/l-nexus:atualizar-aihub` | Atualizar l-nexus para versão mais recente |
+| `/l-nexus:atualizar-l-nexus` | Atualizar l-nexus para versão mais recente |
 | `/l-nexus:brainstorm-lite` | Brainstorming rápido (3 perguntas máx) |
 | `/l-nexus:gerar-prompt` | Gerar prompt limpo para nova sessão |
 
