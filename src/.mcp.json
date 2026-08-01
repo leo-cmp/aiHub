@@ -22,6 +22,12 @@
         "daisyui-github": {
             "command": "npx",
             "args": ["-y", "mcp-remote", "https://gitmcp.io/saadeghi/daisyui"]
+        },
+        "nudge": {
+            "url": "${NUDGE_MCP_URL}",
+            "headers": {
+                "Authorization": "Bearer ${NUDGE_MCP_TOKEN}"
+            }
         }
     }
 }

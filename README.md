@@ -17,7 +17,7 @@ npx @leo-cmp/l-nexus install
 | **Skills** (18 skills) | Brainstorming, brainstorming-lite, caveman, criar-plano, criar-task, executar-task, revisar, gerar-prompt, iniciar-projeto, atualizar-projeto, atualizar-l-nexus + stacks |
 | **Guidelines** (core + stacks) | Execution, planning, testing, git/PR, database, frontend, atomic-design, model-selection + Laravel, CI4, Tailwind, daisyUI, Astro |
 | **Templates** | plan.md, task.md, task-short.md, issue-local.md |
-| **MCP** | context7, github, sequential-thinking, chrome-devtools, daisyui-github |
+| **MCP** | context7, github, sequential-thinking, chrome-devtools, daisyui-github, nudge |
 | **Circuit breakers** | Max 5 skills/sessão, max 3 tentativas/critério, max 10 arquivos/task, loop detection |
 | **Memória entre sessões** | session-memory.md + decisions.md (zero dependência externa) |
 

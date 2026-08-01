@@ -43,6 +43,7 @@ Se o humano iniciar a mensagem com um dos comandos abaixo, a IA deve carregar a 
 - `/l-nexus:brainstorm-lite`: Ativa a skill `brainstorming-lite` para tarefas L2.
 - `/l-nexus:atualizar-l-nexus`: Ativa a skill `atualizar-l-nexus` para atualizar o l-nexus para a versao mais recente.
 - `/l-nexus:gerar-prompt`: Ativa a skill `gerar-prompt` para gerar prompt de continuacao para nova sessao.
+- `/l-nexus:review` ou `/l-nexus:review-projeto`: Ativa a skill `review-projeto` para analisar o codigo existente e gerar/atualizar automaticamente `.ai/project.md`, `.ai/stack.md` e mapear regras de negocio. Ideal para quando o l-nexus e instalado em um projeto ja em andamento.
 
 > [!IMPORTANT]
 > **DIRETRIZ DE DIÁLOGO E ALINHAMENTO**: Qualquer agente que executar atalhos de planejamento/codificação está **proibido de fazer suposições ou criar arquivos em silêncio**.
@@ -106,6 +107,7 @@ Se QUALQUER dúvida surgir durante o fast-track, aborte e siga o fluxo normal.
 Nao carregue todos os cargos nem todas as guidelines por padrao.
 
 Tasks de implementacao devem sempre seguir `.ai/guidelines/core/execution.md`.
+Notificacoes ao usuario devem seguir `.ai/guidelines/core/nudge.md`.
 
 **Limite de escopo:** Nenhuma task deve modificar mais de 10 arquivos.
 Se a implementacao exigir mais:
@@ -150,6 +152,7 @@ Ao final da sessão (ou quando contexto degradar — ver Context Canary):
    - Próximo passo prioritário
 2. Se decisões de arquitetura, stack ou regras foram tomadas, registre em `.ai/decisions.md`.
 3. Atualize o cabeçalho com data/hora, agente e modelo.
+4. Envie nudge de encerramento conforme `.ai/guidelines/core/nudge.md`.
 
 Importante:
 - Seja conciso. Máximo 50 linhas no total.
