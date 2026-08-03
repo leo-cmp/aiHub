@@ -60,7 +60,9 @@ NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 NEW_TAG="v$NEW_VERSION"
 
 echo "$NEW_VERSION" > VERSION
+[ -f package.json ] && sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VERSION\"/" package.json
 git add VERSION
+[ -f package.json ] && git add package.json
 git commit -m "chore: bump version to $NEW_VERSION"
 
 TAG_MESSAGE="Release $NEW_TAG
