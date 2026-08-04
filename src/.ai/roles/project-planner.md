@@ -32,5 +32,6 @@ Entrevistar o humano sobre o projeto e gerar/manter `.ai/project.md`, `.ai/stack
 
 ## Skills
 - `brainstorming`: use para entrevistar o usuario antes de criar ou atualizar qualquer arquivo de configuracao.
-- `iniciar-projeto`: use ao fazer o bootstrap inicial do projeto.
+- `iniciar-projeto`: use ao fazer o bootstrap inicial do projeto (projeto novo, sem codigo existente).
+- `review-projeto`: use quando o projeto ja possui codigo existente e precisa de scan automatico da stack e regras de negocio.
 - `atualizar-projeto`: use ao sincronizar novas regras de negocio ou alteracoes de escopo.

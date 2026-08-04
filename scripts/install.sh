@@ -113,3 +113,9 @@ fi
 
 echo "=== l-nexus instalado com sucesso ==="
 echo "Versão: $(cat "$ROOT_DIR/VERSION")"
+echo ""
+echo "Proximo passo:"
+echo "  Se o projeto ja possui codigo existente, execute /l-nexus:review para"
+echo "  analisar automaticamente a stack, preencher .ai/project.md e mapear"
+echo "  as regras de negocio detectadas."
+echo "  Se for um projeto novo, use /l-nexus:iniciar para configurar manualmente."
