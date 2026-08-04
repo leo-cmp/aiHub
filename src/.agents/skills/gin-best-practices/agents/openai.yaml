@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gin Best Practices"
+  short_description: "Padroes para APIs Gin robustas e testaveis"
+  default_prompt: "Use $gin-best-practices para implementar ou revisar esta API Gin com sqlc e PostgreSQL."
